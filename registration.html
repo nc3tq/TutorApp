@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link href='regcss.css' rel="stylesheet">
+<script src="registration.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".add-row").click(function () {
+            var subject = $("#subject").val();
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + subject + "</td></tr>";
+            $("#tables").append(markup);
+        });
+
+        // Find and remove selected table rows
+        $(".delete-row").click(function () {
+            $("#tables").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $(".add-row-tutor").click(function () {
+            var subject = $("#tutor_subject").val();
+            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + subject + "</td></tr>";
+            $("#tutor_tables").append(markup);
+        });
+
+        // Find and remove selected table rows
+        $(".delete-row-tutor").click(function () {
+            $("#tutor_tables").find('input[name="record"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+            });
+        });
+    }); 
+</script>
+
+
+<script>
+    function show1() {
+        document.getElementById('tutor_profile').style.display = 'none';
+    }
+    function show2() {
+        document.getElementById('tutor_profile').style.display = 'block';
+    }
+</script>
+<style type="text/css">
+    form {
+        margin: 20px 0;
+        font-family: 'Catamaran', sans-serif;
+
+    }
+
+    form input,
+    button {
+        padding: 5px;
+    }
+
+    table {
+        width: 100%;
+        font-family: 'Catamaran', sans-serif;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid #cdcdcd;
+    }
+
+    table th,
+    table td {
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
+    <div class=wrapper>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-sm-3 col-4" id="myScrollspy">
+                    <ul class="nav flex-column sidebar-nav" data-spy="affix">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#classes">Classes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#tutoringprofile">Tutoring
+                                Profile</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#tutoringprofile1">Link 1</a>
+                                <a class="dropdown-item" href="#tutoringprofile2">Link 2</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#submit">Submit</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="col-sm-9 col-8">
+                    <div id="profile" class="content">
+                        <h1>Profile</h1>
+                        <br>
+                        <form>
+                            <table>
+                                <tr>
+                                    <td><span class="require">*</span> Name</td>
+                                    <td><input type="text" placeholder="Name"></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="require">*</span> Phone Number</td>
+                                    <td><input type="tel" placeholder="Phone"></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="require">*</span> Email</td>
+                                    <td><input type="text" placeholder="a@virginia.edu"></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="require">*</span> Biography</td>
+                                    <td><textarea rows="8"></textarea></td>
+                                </tr>
+                            </table>
+                            <div style="float: center;">
+                                <a href='#classes'><span style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+
+
+                    <div id='classes' class="content">
+                        <h1> Classes</h1> <br>
+                        <p> Please list all of the classes you are enrolled in</p>
+                        <form>
+                            <input type="text" id="subject" placeholder="Add Class: CS 2110">
+                            <input type="button" class="add-row" value="Add Class">
+                        </form>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody id='tables'>
+                                <tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="delete-row">Delete Row</button>
+
+                        <div style="float: center;">
+                            <a href='#tutoringprofile'><span style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div id='tutoringprofile' class="content">
+                        <h1> Tutoring Profile</h1> <br>
+                        <div>
+
+                            <p> Would you like to sign up to become a tutor?</p>
+
+                            <input type="radio" id="yes" name="fooby[1][]" value="1" onclick="show2();"> Yes<br>
+                            <input type="radio" id="no" name="fooby[1][]" value="1" onclick="show1();"> No<br>
+                            <div id="tutor_profile" class="content" style="display:none;">
+                                <form>
+                                    <table>
+                                        <tr>
+                                            <td><span class="require">*</span> Biography</td>
+                                            <td><textarea rows="8"></textarea></td>
+                                        </tr>
+                                    </table>
+
+                                </form>
+                                <p> Please list all of the classes you would like to tutor for</p>
+                                <form>
+                                    <input type="text" id="tutor_subject" placeholder="Add Class: CS 2110">
+                                    <input type="button" class="add-row-tutor" value="Add Class">
+                                </form>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Select</th>
+                                            <th>Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id='tutor_tables'>
+                                        <tr>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="button" class="delete-row-tutor">Delete Row</button>
+
+                            </div>
+
+
+                            <div style="float: center;">
+                                <a href='#submit'><span style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                    <div id='submit' class="content">
+                        <h1> Submit</h1> <br>
+                        <input type="button" id="return" value="Submit Registration">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
