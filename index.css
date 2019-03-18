@@ -1,0 +1,248 @@
+.fa-cog {
+  color: yellow;
+}
+
+
+.profile img {
+    width: 10%;
+    height: 10%;
+    position: relative;
+    margin-left: 1%;
+    margin-right: 1%;
+    float: right;
+    margin-top: 0%;
+    padding-top: 0%;
+}
+.logo img {
+    width: 10%;
+    height: 10%;
+    position: relative;
+    margin-left: 1%;
+    margin-right: 1%;
+    float: left;
+}
+
+.main-nav {
+    margin: auto;
+    width: 100%;
+	text-align:center;
+	padding:25px 0;
+    float: center;
+}
+
+.main-nav ul {
+	z-index:999;
+    position: relative;
+
+}
+
+.main-nav ul li {
+    float: center;
+    padding-right: 0%;
+    padding-left: 0%;
+	display:inline-block;
+	list-style: none;
+	position: relative;
+	text-align: center;
+	transition:all 0.5s ease;
+	-o-transition:all 0.5s ease;
+	-moz-transition:all 0.5s ease;
+	-ms-transition:all 0.5s ease;
+	-webkit-transition:all 0.5s ease;	
+}
+
+.main-nav ul li a {
+	color: #444444;
+	display: block;
+	font-size: 16px;
+	line-height: 24px;
+	padding:8px 14px;
+	position: relative;
+	font-weight:bold;
+	text-decoration: none;
+	text-transform:uppercase;
+	transition:all 0.5s ease;
+	-o-transition:all 0.5s ease;
+	-moz-transition:all 0.5s ease;
+	-ms-transition:all 0.5s ease;
+	-webkit-transition:all 0.5s ease;	
+}
+
+.main-nav ul ul li	{
+	padding-bottom:0;	
+}
+
+.main-nav ul ul li a	{
+	border-right:none;
+	color:#fff;
+}
+
+.main-nav ul li a.active {
+	color:#3996d2;
+}
+
+.main-nav ul li a:hover	{
+	color:#3996d2;	
+}
+
+.main-nav ul ul a:hover {
+	color: #000;
+	background:#fff;
+}
+ 
+.main-nav  li:hover ul {
+	display: block;
+	opacity: 1;
+	visibility: visible;
+	margin-top:0px;
+}
+ 
+.main-nav  ul li ul {
+	background:#45BEAD;
+	visibility: hidden;
+	width: auto;
+	position: absolute;
+	text-align: center;
+	transition:all 0.5s ease;
+	-o-transition:all 0.5s ease;
+	-moz-transition:all 0.5s ease;
+	-ms-transition:all 0.5s ease;
+	-webkit-transition:all 0.5s ease;	
+	opacity: 0;
+	margin-top:15px;
+}
+ 
+.main-nav  ul ul li {
+	border-top: 1px solid #ccc;
+	display: block;
+	float: none;
+	margin: 0;
+	list-style: none;
+}
+ 
+	padding-right: 32px;
+}
+
+.main-nav ul li.sub_menu a:before {
+	border-left: 6px solid rgba(0, 0, 0, 0);
+	border-right: 6px solid rgba(0, 0, 0, 0);
+	border-top: 6px solid #FFF;
+	content: "";
+	height: 0;
+	width: 0;
+	z-index: 999;
+}
+ 
+.main-nav  ul ul a,
+.main-nav  ul ul a:link {
+	font-size: 12px;
+	line-height: 40px;
+	padding: 0 15px;
+	min-width: 200px;
+	text-align: center;
+}
+ 
+.main-nav  ul:after {
+	content: '.';
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.main-nav ul , 
+.main-nav ul ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	line-height: 1;
+}
+
+.main-nav ul li ul ul {
+}
+
+.main-nav ul li:hover ul ul , 
+.main-nav ul li:hover ul ul ul , 
+.main-nav ul li.sfhover ul ul , 
+.main-nav ul li.sfhover ul ul ul {
+}
+
+.main-nav ul li:hover ul , 
+.main-nav ul li li:hover ul , 
+.main-nav ul li li li:hover ul , 
+.main-nav ul li.sfhover ul , 
+.main-nav ul li li.sfhover ul , 
+.main-nav ul li li li.sfhover ul { 
+}
+
+.main-nav ul li li li:hover ul {
+	top: 0px;
+}
+
+header.header-three .logo-menu .logout-btn {
+	text-align:center;
+	padding:0px;	
+}
+
+header.header-three .logo-menu .logout-btn a {
+	display:inline-block;
+	color:#fff;
+	text-transform:uppercase;
+	background:#3996d2;
+	text-align:center;
+	padding:0px;
+	margin:0;
+}
+
+header.header-three .logo-menu .logout-btn a i {
+	color:#fff;
+	transition:all 0.5s ease;
+	-o-transition:all 0.5s ease;
+	-moz-transition:all 0.5s ease;
+	-ms-transition:all 0.5s ease;
+	-webkit-transition:all 0.5s ease;	
+}
+
+header.header-three .logo-menu .logout-btn a:hover {
+	background:#095806;
+	color:#fff;
+}
+
+header.header-three .logo-menu .logout-btn a:hover i {
+	color:#fff;	
+}
+
+header .logo {
+	text-align:center;
+    padding-right: 0%;
+}
+
+header .logo a , 
+header .logo a img , 
+header .logo img {
+	display:inline-block;
+	vertical-align:middle;
+	max-width:100%;
+	height:auto;
+    margin-left: 4%;
+    padding-right: 0%;
+}
+
+.bios tr td {
+    vertical-align: center;
+    text-align: center;
+    max-height: 40%;
+    max-width: 40%;
+}
+.bios tr img {
+    vertical-align: center;
+    max-width: 30%;
+    max-height: 30%;
+}
+
+.bios tr td font{
+    vertical-align: top;
+    float: left;
+}
+
