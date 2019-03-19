@@ -1,3 +1,5 @@
+// Aria Kumar(ak8fk)
+
 function start() {
     var allImages = document.getElementsByTagName("img");
     for(var i = 0; i < allImages.length; i++) {
