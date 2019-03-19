@@ -11,6 +11,9 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script type="text/javascript">
 
+
+// This function adds a  class to the table.
+
     $(document).ready(function () {
         $(".add-row").click(function () {
             var subject = $("#subject").val();
@@ -34,6 +37,7 @@
             var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + subject + "</td></tr>";
             $("#tutor_tables").append(markup);
         });
+        // This function adds a tutor class to the table.
 
         // Find and remove selected table rows
         $(".delete-row-tutor").click(function () {
@@ -48,12 +52,15 @@
 
 
 <script>
-    function show1() {
+    show1=()=> {
         document.getElementById('tutor_profile').style.display = 'none';
     }
-    function show2() {
+    show2= function(){
         document.getElementById('tutor_profile').style.display = 'block';
     }
+
+// These are my arrow and anonymous functions that are used to hide and display content 
+
 </script>
 <style type="text/css">
     form {
@@ -87,6 +94,9 @@
     }
 </style>
 
+
+<!-- Registration form: Students can fill out a profile and add the classes they would liek to get tutored in.
+They can also select to become tutors and submit their form. -->
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
     <div class=wrapper>
         <div class="container-fluid">
@@ -100,12 +110,8 @@
                             <a class="nav-link" href="#classes">Classes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#tutoringprofile">Tutoring
+                            <a class="nav-link" href="#tutoringprofile">Tutoring
                                 Profile</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#tutoringprofile1">Link 1</a>
-                                <a class="dropdown-item" href="#tutoringprofile2">Link 2</a>
-                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#submit">Submit</a>
@@ -135,9 +141,19 @@
                                     <td><span class="require">*</span> Biography</td>
                                     <td><textarea rows="8"></textarea></td>
                                 </tr>
+                                <tr>
+                                    <td><span class="require">*</span> Photo</td>
+
+                                    <td>
+                                        <form action="/action_page.php">
+                                            <input type="file" name="pic" accept="image/*">
+                                        </form>
+                                    </td>
+                                </tr>
                             </table>
                             <div style="float: center;">
-                                <a href='#classes'><span style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
+                                <a href='#classes'><span
+                                        style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
                             </div>
                         </form>
                     </div>
@@ -150,7 +166,8 @@
                         <h1> Classes</h1> <br>
                         <p> Please list all of the classes you are enrolled in</p>
                         <form>
-                            <input type="text" id="subject" placeholder="Add Class: CS 2110">
+                            <span class="require">*</span><input type="text" id="subject"
+                                placeholder="Add Class: CS 2110">
                             <input type="button" class="add-row" value="Add Class">
                         </form>
                         <table>
@@ -165,10 +182,11 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <button type="button" class="delete-row">Delete Row</button>
+                        <button type="button" class="delete-row">Delete Row</button> 
 
                         <div style="float: center;">
-                            <a href='#tutoringprofile'><span style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
+                            <a href='#tutoringprofile'><span
+                                    style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
                         </div>
 
                     </div>
@@ -180,7 +198,8 @@
                         <h1> Tutoring Profile</h1> <br>
                         <div>
 
-                            <p> Would you like to sign up to become a tutor?</p>
+                            <p> <span class="require">*</span>
+                                Would you like to sign up to become a tutor?</p>
 
                             <input type="radio" id="yes" name="fooby[1][]" value="1" onclick="show2();"> Yes<br>
                             <input type="radio" id="no" name="fooby[1][]" value="1" onclick="show1();"> No<br>
@@ -194,7 +213,8 @@
                                     </table>
 
                                 </form>
-                                <p> Please list all of the classes you would like to tutor for</p>
+                                <p> <span class="require">*</span>
+                                    Please list all of the classes you would like to tutor for</p>
                                 <form>
                                     <input type="text" id="tutor_subject" placeholder="Add Class: CS 2110">
                                     <input type="button" class="add-row-tutor" value="Add Class">
@@ -217,7 +237,8 @@
 
 
                             <div style="float: center;">
-                                <a href='#submit'><span style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
+                                <a href='#submit'><span
+                                        style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
                             </div>
                         </div>
 
@@ -229,7 +250,7 @@
 
                     <div id='submit' class="content">
                         <h1> Submit</h1> <br>
-                        <input type="button" id="return" value="Submit Registration">
+                        <a class= "btn btn-primary btn-sm" href= "dashboard.html" role= "button"> Submit Registration </a>
 
 
                     </div>

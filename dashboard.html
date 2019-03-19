@@ -35,12 +35,18 @@
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
+<style>
+#name{
+  font-weight:bold;
+}
+
+
+</style>
 
 
 
 
-
-  <title>Bootstrap example</title>
+  <title>Home</title>
 
 </head>
 
@@ -67,10 +73,10 @@
             CS 2150
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#comp">Tutors</a>
-            <a class="dropdown-item" href="#">Favorited Tutors</a>
+            <a class="dropdown-item" href="cs2150tutors.html">Tutors</a>
+            <a class="dropdown-item" href="cs2150favorite.html">Favorited Tutors</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Forum</a>
+            <a class="dropdown-item" href="forums.html">Forum</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -79,10 +85,10 @@
             CS 2110
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="tutors.html">Tutors</a>
-            <a class="dropdown-item" href="#">Favorited Tutors</a>
+            <a class="dropdown-item" href="cs2110tutors.html">Tutors</a>
+            <a class="dropdown-item" href="cs2110favorite.html">Favorited Tutors</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Forum</a>
+            <a class="dropdown-item" href="forums.html">Forum</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -91,10 +97,10 @@
             COMM 2010
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="tutors.html">Tutors</a>
-            <a class="dropdown-item" href="#">Favorited Tutors</a>
+            <a class="dropdown-item" href="commerce2010tutors.html">Tutors</a>
+            <a class="dropdown-item" href="comm2010favorite.html">Favorited Tutors</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Forum</a>
+            <a class="dropdown-item" href="forums.html">Forum</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -103,10 +109,10 @@
             COMM 2020
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="tutors.html">Tutors</a>
-            <a class="dropdown-item" href="#">Favorited Tutors</a>
+            <a class="dropdown-item" href="commerce2020tutors.html">Tutors</a>
+            <a class="dropdown-item" href="comm2020favorite.html">Favorited Tutors</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Forum</a>
+            <a class="dropdown-item" href="forums.html">Forum</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -115,10 +121,10 @@
             EVSC 2020
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="tutors.html">Tutors</a>
-            <a class="dropdown-item" href="#">Favorited Tutors</a>
+            <a class="dropdown-item" href="evsctutors2020tutors.html">Tutors</a>
+            <a class="dropdown-item" href="evsc2020favorite.html">Favorited Tutors</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Forum</a>
+            <a class="dropdown-item" href="forums.html">Forum</a>
           </div>
         </li>
       </ul>
@@ -128,7 +134,8 @@
       </form>
 
 
-
+<!-- Navigation bar for all the classes enrolled in. Students can select which website to go to:
+either browse for tutors depending on the specific class or see their previous favorited tutors -->
 
     </div>
     <ul class="navbar-nav mr-auto my-lg-0 pull-right">
@@ -141,64 +148,84 @@
     </ul>
   </nav>
 
-  <table border="1px" class="bios">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+  
+    <h1 class="display-4">Welcome Back, Branden!</h1>
+    <p class="lead">Choose from your favorited tutors below or select a class and browse for one! </p>
+  </div>
+</div>
+<!-- This is a display of all the favorited tutors. It is useful especially if a student wants to get quickly
+get into contact with one and schedule a meet up without having to search. -->
+
+  <h3><b> COMM 2010: </b></h3>
+  <table border="1px" class="bios" class="hoverTable">
+   
     <tr>
       <td id="comp">
-        <font color="yellow" size="5%"><i class="far fa-star"></i></font>
+        <font color="yellow" size="5%"><i class="fas fa-star"></i></font>
         <img src="images/blank.jpg"><br>
-        <div id="name"><b>Aria Kumar</b></div><br>
-        Hi there! I'm a third year CS and Cog Sci double major. Lorem ipsum dolor sit amet, consectetur
+        <div id="name">John Smith</div><br>
+        Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Donec at ex vitae lectus vehicula congue. Mauris dictum dictum elit. Aenean semper
         augue ut erat gravida ornare. Fusce imperdiet posuere metus.
 
 
       </td>
       <td id="comp">
-        <font color="yellow" size="5%"><i class="far fa-star"></i></font>
+        <font color="yellow" size="5%"><i class="fas fa-star"></i></font>
         <img src="images/blank.jpg"><br>
-        <div id="name"><b>Neha Chopra</b></div><br>
-        Hello! I'm a third year CS and Statistics double major. Lorem ipsum dolor sit amet, consectetur
+        <div id="name">Jane Doe</div><br>
+        Lorem ipsum dolor sit amet, consectetur
         adipiscing elit. Donec at ex vitae lectus vehicula congue. Mauris dictum dictum elit. Aenean semper
         augue ut erat gravida ornare. Fusce imperdiet posuere metus.
 
 
       </td>
       <td id="cogsci">
-        <font color="yellow" size="5%"><i class="far fa-star"></i></font>
+        <font color="yellow" size="5%"><i class="fas fa-star"></i></font>
         <img src="images/blank.jpg"><br>
-        <div id="name"><b>Stephanie Tran</b></div><br>
-        Hi, I'm a third year cog sci major with a concentration in computer science. Lorem ipsum dolor sit amet,
+        <div id="name">John Smith</div><br>
+        Lorem ipsum dolor sit amet,
         consectetur adipiscing elit. Donec at ex vitae lectus vehicula congue. Mauris dictum dictum elit. Aenean
         semper augue ut erat gravida ornare. Fusce imperdiet posuere metus.
-
+       </td>
+       
+       
 
     </tr>
+    
+    </table>
+    
+    <h3><b> CS 2150: </b></h3>
+    
+    <table border="1px" class="bios">
     <tr>
       <td id="comm">
-        <font color="yellow" size="5%"><i class="far fa-star"></i></font>
+        <font color="yellow" size="5%"><i class="fas fa-star"></i></font>
         <img src="images/blank.jpg"><br>
-        <div id="name"><b>Tanisha Shah</b></div><br>
-        Hi, I'm in the comm school! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at ex vitae
+        <div id="name">Jane Doe</div><br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at ex vitae
         lectus vehicula congue. Mauris dictum dictum elit. Aenean semper augue ut erat gravida ornare. Fusce
         imperdiet posuere metus.
 
 
       </td>
       <td id="comm">
-        <font color="yellow" size="5%"><i class="far fa-star"></i></font>
+        <font color="yellow" size="5%"><i class="fas fa-star"></i></font>
         <img src="images/blank.jpg"><br>
-        <div id="name"><b>Anchita Khullar</b></div><br>
-        Hi, I'm in the comm school! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at ex vitae
+        <div id="name">John Smith</div><br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at ex vitae
         lectus vehicula congue. Mauris dictum dictum elit. Aenean semper augue ut erat gravida ornare. Fusce
         imperdiet posuere metus.
 
         xt
       </td>
       <td id="envsci">
-        <font color="yellow" size="5%"><i class="far fa-star"></i></font>
+        <font color="yellow" size="5%"><i class="fas fa-star"></i></font>
         <img src="images/blank.jpg"><br>
-        <div id="name"><b>Olivia Lewis</b></div><br>
-        Hi! I'm an environmental science major! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+        <div id="name">Jane Doe</div><br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
         at ex vitae lectus vehicula congue. Mauris dictum dictum elit. Aenean semper augue ut erat gravida
         ornare. Fusce imperdiet posuere metus.
 
@@ -208,7 +235,7 @@
 
 
 </body>
-<script src="js/back.js"></script>
+<script src="js/backdashboard.js"></script>
 
 
 </html>
