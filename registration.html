@@ -95,6 +95,19 @@
 </style>
 
 
+<script>
+        function checkText() {
+            var msg = document.getElementById("user-msg");
+            if (this.value.length ==0)
+                msg.textContent = "Please fill out ";
+            else
+                msg.textContent = "";
+        }
+        var user = document.getElementsByClassName("require");
+        user.addEventListener('blur', checkText, false);
+    </script>
+
+
 <!-- Registration form: Students can fill out a profile and add the classes they would liek to get tutored in.
 They can also select to become tutors and submit their form. -->
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="1">
@@ -123,37 +136,42 @@ They can also select to become tutors and submit their form. -->
                     <div id="profile" class="content">
                         <h1>Profile</h1>
                         <br>
-                        <form>
+                        <form action="#">
                             <table>
                                 <tr>
                                     <td><span class="require">*</span> Name</td>
-                                    <td><input type="text" placeholder="Name"></td>
+                                    <td><input type="text" placeholder="Name" pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$" ></td>
+
                                 </tr>
                                 <tr>
                                     <td><span class="require">*</span> Phone Number</td>
-                                    <td><input type="tel" placeholder="Phone"></td>
+                                    <td><input type="tel" placeholder="Phone: 123-123-123" pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"></td>
+
                                 </tr>
                                 <tr>
                                     <td><span class="require">*</span> Email</td>
-                                    <td><input type="text" placeholder="a@virginia.edu"></td>
+                                    <td><input type="text" placeholder="a@virginia.edu" pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$"></td>
+
                                 </tr>
                                 <tr>
                                     <td><span class="require">*</span> Biography</td>
-                                    <td><textarea rows="8"></textarea></td>
+                                    <td><textarea rows="8" pattern="^[a-zA-Z]+$"></textarea></td>
+
                                 </tr>
                                 <tr>
                                     <td><span class="require">*</span> Photo</td>
-
                                     <td>
                                         <form action="/action_page.php">
                                             <input type="file" name="pic" accept="image/*">
                                         </form>
+
                                     </td>
                                 </tr>
                             </table>
                             <div style="float: center;">
+                                    <input type="submit">
                                 <a href='#classes'><span
-                                        style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
+                                    style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
                             </div>
                         </form>
                     </div>
@@ -167,8 +185,9 @@ They can also select to become tutors and submit their form. -->
                         <p> Please list all of the classes you are enrolled in</p>
                         <form>
                             <span class="require">*</span><input type="text" id="subject"
-                                placeholder="Add Class: CS 2110">
+                                placeholder="Add Class: CS 2110" pattern="'^[a-zA-Z]+$'">
                             <input type="button" class="add-row" value="Add Class">
+
                         </form>
                         <table>
                             <thead>
@@ -181,12 +200,13 @@ They can also select to become tutors and submit their form. -->
                                 <tr>
                                 </tr>
                             </tbody>
+
                         </table>
                         <button type="button" class="delete-row">Delete Row</button> 
 
                         <div style="float: center;">
-                            <a href='#tutoringprofile'><span
-                                    style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
+                            <a href='#classes'><span
+                                style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
                         </div>
 
                     </div>
@@ -210,14 +230,16 @@ They can also select to become tutors and submit their form. -->
                                             <td><span class="require">*</span> Biography</td>
                                             <td><textarea rows="8"></textarea></td>
                                         </tr>
+
                                     </table>
 
                                 </form>
                                 <p> <span class="require">*</span>
                                     Please list all of the classes you would like to tutor for</p>
                                 <form>
-                                    <input type="text" id="tutor_subject" placeholder="Add Class: CS 2110">
+                                    <input type="text" id="tutor_subject" placeholder="Add Class: CS 2110" pattern="'^[a-zA-Z]+$'">
                                     <input type="button" class="add-row-tutor" value="Add Class">
+
                                 </form>
                                 <table>
                                     <thead>
@@ -230,6 +252,7 @@ They can also select to become tutors and submit their form. -->
                                         <tr>
                                         </tr>
                                     </tbody>
+
                                 </table>
                                 <button type="button" class="delete-row-tutor">Delete Row</button>
 
@@ -237,8 +260,8 @@ They can also select to become tutors and submit their form. -->
 
 
                             <div style="float: center;">
-                                <a href='#submit'><span
-                                        style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
+                                <a href='#classes'><span
+                                    style="margin:auto; display:table; border:1px; padding:50px;">&#8659;</span></a>
                             </div>
                         </div>
 
