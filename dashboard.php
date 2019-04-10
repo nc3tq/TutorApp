@@ -60,7 +60,7 @@
 
 <?php
 
-if(isset($_COOKIE['email'])){
+if(isset($_COOKIE['email']) or isset($_COOKIE['name'])){
 ?>
 
 
@@ -158,7 +158,7 @@ either browse for tutors depending on the specific class or see their previous f
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
   
-    <h1 class="display-4">Welcome Back, <?php if(isset($_COOKIE['email'])) echo $_COOKIE['name']; ?></h1>
+    <h1 class="display-4">Welcome Back, <?php echo $_COOKIE['name']; ?></h1>
     <p class="lead">Choose from your favorited tutors below or select a class and browse for one! </p>
   </div>
 </div>

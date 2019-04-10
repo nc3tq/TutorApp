@@ -28,145 +28,82 @@
     <title>Registration</title>
 </head>
 
+<style>
+    fieldset {
+        border: 3px solid black;
+        padding: 20px;
+    }
+</style>
 
 <script>
-    var password = document.getElementById("InputPassword1");
-    var confirm_password = document.getElementById("InputPassword2");
-
-function validatePassword(){
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Passwords Don't Match");
-  } else {
-    confirm_password.setCustomValidity('');
-  }
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
+    function validatePassword(input) {
+        if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('Password Must be Matching.');
+        } else {
+            // input is valid -- reset the error message
+            input.setCustomValidity('');
+        }
+    }
 </script>
 
 <body>
 
     <div class="container">
-        <h1>Registration
-        </h1>
+        <!-- <h1>Registration
+        </h1> -->
 
         <form>
-            <div class="form-group">
-                <label for="InputName" class="bmd-label-floating">Name (Ex. Jane Doe)</label>
-                <input type="name" class="form-control" id="InputName" pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$">
-            </div>
-            <div class="form-group">
-                <label for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
-                <input type="email" class="form-control" id="InputEmail1" pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$">
-                <span class="bmd-help">This email will be used during login.</span>
-            </div>
-            <div class="form-group">
-                <label for="InputPassword1" class="bmd-label-floating">Password</label>
-                <input type="password" class="form-control" id="InputPassword1">
-            </div>
-            <div class="form-group">
-                <label for="InputPassword2" class="bmd-label-floating">Confirm Password</label>
-                <input type="password" class="form-control" id="InputPassword2" onclick="validatePassword()">
-            </div>
-            <div class="form-group">
-                <label for="InputPhone" class="bmd-label-floating">Phone Number (Ex. 123-123-123)</label>
-                <input type="phone" class="form-control" id="InputPhone" pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$">
-            </div>
+            <fieldset>
+                <legend runat="server" visible="true" style="width:auto; margin-bottom: 0px; font-weight: bold; color: black;">
+                    Registration
+                </legend>
 
-            <div class="form-group">
-                <label for="biography" class="bmd-label-floating">Biography</label>
-                <textarea class="form-control" id="biography" rows="5"></textarea>
-            </div>
-            <script type="text/javascript">
-                $(document).ready(function() {
-                    $('#multiple-checkboxes').multiselect({
-                        filterPlaceholder: 'Search',
-                        enableCaseInsensitiveFiltering: true,
-                        includeSelectAllOption: true,
-                    });
-                });
-            </script>
+                <div class="form-group">
+                    <label for="InputName" class="bmd-label-floating">Name (Ex. Jane Doe)</label>
+                    <input type="name" class="form-control" id="InputName" pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$">
+                </div>
+                <div class="form-group">
+                    <label for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
+                    <input type="email" class="form-control" id="InputEmail1" pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$">
+                    <span class="bmd-help">This email will be used during login.</span>
+                </div>
+                <div class="form-group">
+                    <label for="InputPassword1" class="bmd-label-floating">Password</label>
+                    <input type="password" class="form-control" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                    <span class="bmd-help">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</span>
 
-            <div class='form-group'>
-
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-
-
-                <strong>Select classes you would like to get tutored on:</strong>
-                <select id="multiple-checkboxes" multiple="multiple" class="form-control">
-                    <optgroup label='Computer Science'>
-                        <option id="cs1110">CS 1110</option>
-                        <option id="cs2110">CS 2110</option>
-                        <option id="cs2150">CS 2150</option>
-                        <option id="cs2120">CS 2120</option>
-                        <option id="cs3330">CS 3330</option>
-                        <option id="cs4102">CS 4102</option>
-                        <option id="cs4414">CS 4414</option>
-                    </optgroup>
-                    <optgroup label='Applied Mathematics'>
-                        <option id="apma3080">APMA 3080</option>
-                        <option id="apma3100">APMA 3100</option>
-                    </optgroup>
-                    <optgroup label='Commerce'>
-                        <option id="comm2010">COMM 2010</option>
-                        <option id="comm2020">COMM 2020</option>
-                        <option id="comm3410">COMM 3410</option>
-                        <option id="comm3420">COMM 3420</option>
-                        <option id="comm3720">COMM 3720</option>
-                    </optgroup>
-                </select>
-
-
-
-
-            </div>
-
-
-
-            <div class="form-group">
-                <label for="InputPhoto" class="bmd-label-floating">Profile photo</label>
-                <input type="file" class="form-control-file" id="InputPhoto" accept="image/*">
-
-            </div>
-            <script>
-                show1 = () => {
-                    document.getElementById('tutor_profile').style.display = 'none';
-                }
-                show2 = function() {
-                    document.getElementById('tutor_profile').style.display = 'block';
-                }
-
-                // These are my arrow and anonymous functions that are used to hide and display content 
-            </script>
-
-            <div class="radio" id='tutoringprofile'>
-
-                <p>Would you like to sign up to become a tutor?</p>
-
-                <label> <input type="radio" id="yes" name="fooby[1][]" value="1" onclick="show2();"> Yes<br></label>
-                <label><input type="radio" id="no" name="fooby[1][]" value="1" onclick="show1();"> No<br></label>
-            </div>
-
-            <div id="tutor_profile" style="display:none;" class="form-group">
-
+                </div>
+                <div class="form-group">
+                    <label for="InputPassword2" class="bmd-label-floating">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm_password" oninput="validatePassword(this)">
+                </div>
+                <div class="form-group">
+                    <label for="InputPhone" class="bmd-label-floating">Phone Number (Ex. 123-123-123)</label>
+                    <input type="phone" class="form-control" id="InputPhone" pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$">
+                </div>
 
                 <div class="form-group">
                     <label for="biography" class="bmd-label-floating">Biography</label>
                     <textarea class="form-control" id="biography" rows="5"></textarea>
                 </div>
-
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('#multiple-checkboxes').multiselect({
+                            filterPlaceholder: 'Search',
+                            enableCaseInsensitiveFiltering: true,
+                            includeSelectAllOption: true,
+                        });
+                    });
+                </script>
 
                 <div class='form-group'>
+
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
 
 
-
-                    <strong>Select classes you would like to get tutored for (Press command/ctrl when you want to multi-select):</strong>
+                    <strong>Select classes you would like to get tutored on:</strong>
                     <select id="multiple-checkboxes" multiple="multiple" class="form-control">
-
                         <optgroup label='Computer Science'>
                             <option id="cs1110">CS 1110</option>
                             <option id="cs2110">CS 2110</option>
@@ -190,15 +127,88 @@ confirm_password.onkeyup = validatePassword;
                     </select>
 
 
+
+
                 </div>
 
-            </div>
 
-            <div id='submit'>
-                <a class="btn btn-primary btn-sm" href="dashboard.html" role="button"> Submit Registration </a>
-            </div>
-            <!-- <button type="submit" href = 'dashboard.php'class="btn btn-primary btn-raised">Submit</button> -->
+
+                <div class="form-group">
+                    <label for="InputPhoto" class="bmd-label-floating">Profile photo</label>
+                    <input type="file" class="form-control-file" id="InputPhoto" accept="image/*">
+
+                </div>
+                <script>
+                    show1 = () => {
+                        document.getElementById('tutor_profile').style.display = 'none';
+                    }
+                    show2 = function() {
+                        document.getElementById('tutor_profile').style.display = 'block';
+                    }
+
+                    // These are my arrow and anonymous functions that are used to hide and display content 
+                </script>
+
+                <div class="radio" id='tutoringprofile'>
+
+                    <p>Would you like to sign up to become a tutor?</p>
+
+                    <label> <input type="radio" id="yes" name="fooby[1][]" value="1" onclick="show2();"> Yes<br></label>
+                    <label><input type="radio" id="no" name="fooby[1][]" value="1" onclick="show1();"> No<br></label>
+                </div>
+
+                <div id="tutor_profile" style="display:none;" class="form-group">
+
+
+                    <div class="form-group">
+                        <label for="biography" class="bmd-label-floating">Biography</label>
+                        <textarea class="form-control" id="biography" rows="5"></textarea>
+                    </div>
+
+
+                    <div class='form-group'>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+
+
+                        <strong>Select classes you would like to get tutored for (Press command/ctrl when you want to multi-select):</strong>
+                        <select id="multiple-checkboxes" multiple="multiple" class="form-control">
+
+                            <optgroup label='Computer Science'>
+                                <option id="cs1110">CS 1110</option>
+                                <option id="cs2110">CS 2110</option>
+                                <option id="cs2150">CS 2150</option>
+                                <option id="cs2120">CS 2120</option>
+                                <option id="cs3330">CS 3330</option>
+                                <option id="cs4102">CS 4102</option>
+                                <option id="cs4414">CS 4414</option>
+                            </optgroup>
+                            <optgroup label='Applied Mathematics'>
+                                <option id="apma3080">APMA 3080</option>
+                                <option id="apma3100">APMA 3100</option>
+                            </optgroup>
+                            <optgroup label='Commerce'>
+                                <option id="comm2010">COMM 2010</option>
+                                <option id="comm2020">COMM 2020</option>
+                                <option id="comm3410">COMM 3410</option>
+                                <option id="comm3420">COMM 3420</option>
+                                <option id="comm3720">COMM 3720</option>
+                            </optgroup>
+                        </select>
+
+
+                    </div>
+
+                </div>
+
+                <div id='submit'>
+                    <a class="btn btn-primary btn-sm" href="dashboard.html" role="button"> Submit Registration </a>
+                </div>
+                <!-- <button type="submit" href = 'dashboard.php'class="btn btn-primary btn-raised">Submit</button> -->
+            </fieldset>
         </form>
+
 
     </div>
 
@@ -207,5 +217,29 @@ confirm_password.onkeyup = validatePassword;
 
 
 </body>
+
+
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['name']) > 0)
+    {
+       $name = trim($_POST['name']);
+       if (!ctype_alnum($name))   // ctype_alnum() check if the values contain only alphanumeric data
+          reject('Name');
+            
+       if (isset($_POST['name']))
+       {
+          
+             // setcookie(name, value, expiery-time)
+             // setcookie() function stores the submitted fields' name/value pair
+             setcookie('name', $name, time()+3600);
+                        
+             // redirect the browser to another page using the header() function to specify the target URL
+             header('Location: dashboard.php');
+          
+       }
+    }
+
+?>
 
 </html>
