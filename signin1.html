@@ -44,7 +44,7 @@
                 <input type="text" class="form-style form-control" name ="email "id="email" placeholder="Email" autofocus required />
                 <div id="user-msg" class="feedback"></div>
                 <br />
-                <input type="password" class="form-style form-control" name = "password" id="pwd" placeholder="Password" required />
+                <input type="password" class="form-style form-control" name = "pwd" id="pwd" placeholder="Password" required />
                 <div id="pwd-msg" class="feedback"></div>
                 <br />
                 <input type="submit" class="form-style login pull-center" value="Log in" />
@@ -61,19 +61,36 @@
 <?php
 
 
-
+    function reject($entry)
+    {
+        echo 'Please <a href="login.php">Log in </a>';
+        exit();    // exit the current script, no value is returned
+    }
+    
+    if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['email']) > 0)
+    {
+       $email = trim($_POST['email']);
+       if (!ctype_alnum($email))   // ctype_alnum() check if the values contain only alphanumeric data
+          reject('Email');
+            
+       if (isset($_POST['pwd']))
+       {
+          $pwd = trim($_POST['pwd']);
+          if (!ctype_alnum($pwd))
+             reject('Password');
+          else
+          {
+             // setcookie(name, value, expiery-time)
+             // setcookie() function stores the submitted fields' name/value pair
+             setcookie('email', $email, time()+3600);
+             setcookie('pwd', md5($pwd), time()+3600);  // create a hash conversion of password values using md5() function
+                        
+             // redirect the browser to another page using the header() function to specify the target URL
+             header('Location: dashboard.php');
+          }
+       }
+    }
 ?>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

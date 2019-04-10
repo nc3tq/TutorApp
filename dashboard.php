@@ -1,6 +1,6 @@
 <!-- // Aria Kumar(ak8fk) and Neha Chopra(nc3tq)
  -->
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en" class="gr__cs_virginia_edu">
 
 <head>
