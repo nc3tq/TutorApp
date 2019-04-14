@@ -1,5 +1,11 @@
 <!-- // Aria Kumar(ak8fk) and Neha Chopra(nc3tq)
  -->
+<?php
+session_start(); 
+?>
+
+
+
  <!DOCTYPE html>
 <html lang="en" class="gr__cs_virginia_edu">
 

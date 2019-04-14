@@ -1,11 +1,5 @@
-<?php
-require('connect-db.php');
-require('hello.php');
-?>
-
 <!doctype html>
 <html lang="en">
-
 
 <head>
     <meta charset="utf-8">
@@ -159,7 +153,7 @@ require('hello.php');
                     <p>Would you like to sign up to become a tutor?</p>
 
                     <label> <input type="radio" id="yes" name="tutor" value="1" onclick="show2();"> Yes<br></label>
-                    <label><input type="radio" id="no" name="tutor" value="1" onclick="show1();"> No<br></label>
+                    <label><input type="radio" id="no" name="tutor" value="0" onclick="show1();"> No<br></label>
                 </div>
 
                 <div id="tutor_profile" style="display:none;" class="form-group">
@@ -208,7 +202,7 @@ require('hello.php');
                 </div>
 
                 <div id='submit'>
-                    <input class="btn btn-primary btn-sm" type="submit" name="submit" role="button">
+                    <input class="btn btn-primary btn-sm" href='dashboard.php' type="submit" name="submit" role="button">
                 </div>
                 <!-- <button type="submit" href = 'dashboard.php'class="btn btn-primary btn-raised">Submit</button> -->
             </fieldset>
@@ -256,7 +250,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $query = "SELECT * from Students where Email='$email'";
     if ($result = mysqli_query($conn, $query)) {
-        echo "Hi";
         if (mysqli_num_rows($result) > 0) {
             echo "Exists";
         } else {
@@ -266,7 +259,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             echo "$name";
             if ($conn->query($sql) === TRUE) {
-                #header('location:http://localhost/WebApplications/dashboard.php');
+                header('location:http://localhost/WebApplications/dashboard.php');
 
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
@@ -276,6 +269,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $conn->close();
+
+
+if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['name']) > 0)
+    {
+       $name = trim($_POST['name']);
+       if (!ctype_alnum($name))   // ctype_alnum() check if the values contain only alphanumeric data
+          reject('Name');
+            
+       if (isset($_POST['name']))
+       {
+          
+             // setcookie(name, value, expiery-time)
+             // setcookie() function stores the submitted fields' name/value pair
+             setcookie('name', $name, time()+3600);
+                        
+             // redirect the browser to another page using the header() function to specify the target URL
+             header('Location: dashboard.php');
+          
+       }
+    }
+
 
 
 

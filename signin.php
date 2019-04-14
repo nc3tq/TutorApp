@@ -1,5 +1,8 @@
 <!-- // Aria Kumar(ak8fk) and Neha Chopra(nc3tq)
  -->
+<?php
+session_start();
+?>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href='style.css' rel='stylesheet'>
@@ -41,13 +44,13 @@
                 <h1 class="text-center head">Tutor Hoos</h1>
             </div>
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="return (checkEmail())">
-                <input type="text" class="form-style form-control" name ="email "id="email" placeholder="Email" autofocus required />
+                <input type="text" class="form-style form-control" name="email " id="email" placeholder="Email" autofocus required />
                 <div id="user-msg" class="feedback"></div>
                 <br />
-                <input type="password" class="form-style form-control" name = "pwd" id="pwd" placeholder="Password" required />
+                <input type="password" class="form-style form-control" name="pwd" id="pwd" placeholder="Password" required />
                 <div id="pwd-msg" class="feedback"></div>
                 <br />
-                <input type="submit" class="form-style login pull-center" value="Log in" />
+                <input type="submit" class="form-style login pull-center" name="login" value="Log in" />
                 <p><a href="#">Forgot Password?</a></p>
                 <p><a href="registration1.php">Register</a></p>
                 <!-- use input type="submit" with the required attribute -->
@@ -58,7 +61,17 @@
         </div>
     </div>
 
-<?php
+    <?php
+
+
+    $hostname = "localhost";
+    $database = "project";
+    $username = "nc3tq";
+    $password = "WebPL4640";
+
+
+    $conn = new mysqli($hostname, $username, $password, $database);
+
 
 
     function reject($entry)
@@ -66,36 +79,65 @@
         echo 'Please <a href="signin.php">Log in </a>';
         exit();    // exit the current script, no value is returned
     }
-    
-    if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['email']) > 0)
-    {
-       $email = trim($_POST['email']);
-       if (!ctype_alnum($email))   // ctype_alnum() check if the values contain only alphanumeric data
-          reject('Email');
-            
-       if (isset($_POST['pwd']))
-       {
-          $pwd = trim($_POST['pwd']);
-          if (!ctype_alnum($pwd))
-             reject('Password');
-          else
-          {
-             // setcookie(name, value, expiery-time)
-             // setcookie() function stores the submitted fields' name/value pair
-             setcookie('email', $email, time()+3600);
-             setcookie('pwd', md5($pwd), time()+3600);  // create a hash conversion of password values using md5() function
-                        
-             // redirect the browser to another page using the header() function to specify the target URL
-             header('Location: dashboard.php');
-          }
-       }
+
+
+    $username = "";
+    $email = "";
+    if (isset($_POST['login'])) {
+        $email = $_POST['email'];
+        $pwd = $_POST['pwd'];
+
+        $sql_u = "SELECT * FROM project WHERE email='$email'";
+        $res_e = mysqli_query($db, $sql_e);
+
+        if (mysqli_num_rows($res_u) > 0) {
+            $name_error = "Sorry... username already taken";
+        } else if (mysqli_num_rows($res_e) > 0) {
+            $email_error = "Sorry... email already taken";
+        } else {
+            $query = "INSERT INTO users (username, email, password) 
+                      VALUES ('$username', '$email', '" . md5($password) . "')";
+            $results = mysqli_query($db, $query);
+            echo 'Saved!';
+            exit();
+        }
     }
-?>
+
+
+
+
+    if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['email']) > 0) {
+            $email = trim($_POST['email']);
+            if (!ctype_alnum($email)) // ctype_alnum() check if the values contain only alphanumeric data
+                reject('Email');
+
+            if (isset($_POST['pwd'])) {
+                    $pwd = trim($_POST['pwd']);
+                    if (!ctype_alnum($pwd))
+                        reject('Password');
+                    else {
+                            // setcookie(name, value, expiery-time)
+                            // setcookie() function stores the submitted fields' name/value pair
+                            setcookie('email', $email, time() + 3600);
+                            setcookie('pwd', md5($pwd), time() + 3600); // create a hash conversion of password values using md5() function
+
+                            // redirect the browser to another page using the header() function to specify the target URL
+                            header('Location: dashboard.php');
+                        }
+                }
+        }
+    ?>
 
 
 
 
 </body>
+
+
+
+
+
+
 
 </html>
 
