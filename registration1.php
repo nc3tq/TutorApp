@@ -1,3 +1,8 @@
+<?php
+require('connect-db.php');
+require('hello.php');
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -52,7 +57,7 @@
         <!-- <h1>Registration
         </h1> -->
 
-        <form>
+        <form action="registration1.php" method="post">
             <fieldset>
                 <legend runat="server" visible="true" style="width:auto; margin-bottom: 0px; font-weight: bold; color: black;">
                     Registration
@@ -60,16 +65,16 @@
 
                 <div class="form-group">
                     <label for="InputName" class="bmd-label-floating">Name (Ex. Jane Doe)</label>
-                    <input type="name" class="form-control" id="InputName" pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$">
+                    <input type="name" class="form-control" id="InputName" name="name" pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$">
                 </div>
                 <div class="form-group">
                     <label for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
-                    <input type="email" class="form-control" id="InputEmail1" pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$">
+                    <input type="email" name="email" class="form-control" id="InputEmail1" pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$">
                     <span class="bmd-help">This email will be used during login.</span>
                 </div>
                 <div class="form-group">
                     <label for="InputPassword1" class="bmd-label-floating">Password</label>
-                    <input type="password" class="form-control" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                    <input type="password" name="pwd" class="form-control" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                     <span class="bmd-help">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</span>
 
                 </div>
@@ -79,12 +84,12 @@
                 </div>
                 <div class="form-group">
                     <label for="InputPhone" class="bmd-label-floating">Phone Number (Ex. 123-123-123)</label>
-                    <input type="phone" class="form-control" id="InputPhone" pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$">
+                    <input type="phone" name="phone" class="form-control" id="InputPhone" pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$">
                 </div>
 
                 <div class="form-group">
                     <label for="biography" class="bmd-label-floating">Biography</label>
-                    <textarea class="form-control" id="biography" rows="5"></textarea>
+                    <textarea class="form-control" name="bio" id="biography" rows="5"></textarea>
                 </div>
                 <script type="text/javascript">
                     $(document).ready(function() {
@@ -103,7 +108,7 @@
 
 
                     <strong>Select classes you would like to get tutored on:</strong>
-                    <select id="multiple-checkboxes" multiple="multiple" class="form-control">
+                    <select id="multiple-checkboxes" multiple="multiple" name="classes[]" class="form-control">
                         <optgroup label='Computer Science'>
                             <option id="cs1110">CS 1110</option>
                             <option id="cs2110">CS 2110</option>
@@ -153,8 +158,8 @@
 
                     <p>Would you like to sign up to become a tutor?</p>
 
-                    <label> <input type="radio" id="yes" name="fooby[1][]" value="1" onclick="show2();"> Yes<br></label>
-                    <label><input type="radio" id="no" name="fooby[1][]" value="1" onclick="show1();"> No<br></label>
+                    <label> <input type="radio" id="yes" name="tutor" value="1" onclick="show2();"> Yes<br></label>
+                    <label><input type="radio" id="no" name="tutor" value="1" onclick="show1();"> No<br></label>
                 </div>
 
                 <div id="tutor_profile" style="display:none;" class="form-group">
@@ -162,7 +167,7 @@
 
                     <div class="form-group">
                         <label for="biography" class="bmd-label-floating">Biography</label>
-                        <textarea class="form-control" id="biography" rows="5"></textarea>
+                        <textarea class="form-control" name="tutorbio" id="biography" rows="5"></textarea>
                     </div>
 
 
@@ -173,7 +178,7 @@
 
 
                         <strong>Select classes you would like to get tutored for (Press command/ctrl when you want to multi-select):</strong>
-                        <select id="multiple-checkboxes" multiple="multiple" class="form-control">
+                        <select id="multiple-checkboxes" name="tutorclass[]" multiple="multiple" class="form-control">
 
                             <optgroup label='Computer Science'>
                                 <option id="cs1110">CS 1110</option>
@@ -203,7 +208,7 @@
                 </div>
 
                 <div id='submit'>
-                    <a class="btn btn-primary btn-sm" href="dashboard.html" role="button"> Submit Registration </a>
+                    <input class="btn btn-primary btn-sm" type="submit" name="submit" role="button">
                 </div>
                 <!-- <button type="submit" href = 'dashboard.php'class="btn btn-primary btn-raised">Submit</button> -->
             </fieldset>
@@ -219,27 +224,69 @@
 </body>
 
 
+
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['name']) > 0)
-    {
-       $name = trim($_POST['name']);
-       if (!ctype_alnum($name))   // ctype_alnum() check if the values contain only alphanumeric data
-          reject('Name');
-            
-       if (isset($_POST['name']))
-       {
-          
-             // setcookie(name, value, expiery-time)
-             // setcookie() function stores the submitted fields' name/value pair
-             setcookie('name', $name, time()+3600);
-                        
-             // redirect the browser to another page using the header() function to specify the target URL
-             header('Location: dashboard.php');
-          
-       }
+
+$hostname = "localhost";
+$database = "project";
+$username = "nc3tq";
+$password = "WebPL4640";
+
+
+$conn = new mysqli($hostname, $username, $password, $database);
+
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    echo "Connected successfully";
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST["name"];
+    $phone = $_POST["phone"];
+    $email = $_POST["email"];
+    $pwd = $_POST["pwd"];
+    $bio = $_POST["bio"];
+    $classes = $_POST["classes[]"];
+    $tutor = $_POST["tutor"];
+
+
+    $query = "SELECT * from Students where Email='$email'";
+    if ($result = mysqli_query($conn, $query)) {
+        echo "Hi";
+        if (mysqli_num_rows($result) > 0) {
+            echo "Exists";
+        } else {
+            // $sql = "INSERT INTO Students(Name_User, Phone, Email,User_Password, Biography, Classes, Tutor) VALUES ('$name','$phone','$email','$pwd','$bio', '$classes', '$tutor')";
+            $sql = "INSERT INTO Students (name_user, phone, email,user_password, biography, classes, tutor) 
+        VALUES ('$name','$phone','$email','$pwd','$bio', '$classes', '$tutor')";
+
+            echo "$name";
+            if ($conn->query($sql) === TRUE) {
+                #header('location:http://localhost/WebApplications/dashboard.php');
+
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
     }
+}
+
+$conn->close();
+
+
+
+
+
+
+
+
 
 ?>
+
+
 
 </html>
