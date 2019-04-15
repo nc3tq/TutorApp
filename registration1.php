@@ -102,7 +102,7 @@
 
 
                     <strong>Select classes you would like to get tutored on:</strong>
-                    <select id="multiple-checkboxes" multiple="multiple" name="classes[]" class="form-control">
+                    <select for='classes'id="multiple-checkboxes" multiple="multiple" name="classes[]" class="form-control">
                         <optgroup label='Computer Science'>
                             <option id="cs1110">CS 1110</option>
                             <option id="cs2110">CS 2110</option>
@@ -216,11 +216,7 @@
 
 
 </body>
-
-
-
 <?php
-
 
 $hostname = "localhost";
 $database = "project";
@@ -238,14 +234,18 @@ if ($conn->connect_error) {
 }
 
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST["name"];
     $phone = $_POST["phone"];
     $email = $_POST["email"];
     $pwd = $_POST["pwd"];
     $bio = $_POST["bio"];
-    $classes = $_POST["classes[]"];
     $tutor = $_POST["tutor"];
+
+    $classes = implode(',', $_POST['classes']);
+    echo $classes;
+
 
 
     $query = "SELECT * from Students where email='$email'";
@@ -270,35 +270,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $conn->close();
-
-
-// if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['name']) > 0) {
-//         $name = trim($_POST['name']);
-//         if (!ctype_alnum($name))   // ctype_alnum() check if the values contain only alphanumeric data
-//             reject('Name');
-
-//         if (isset($_POST['name'])) {
-
-//                 // setcookie(name, value, expiery-time)
-//                 // setcookie() function stores the submitted fields' name/value pair
-//                 setcookie('name', $name, time() + 3600);
-
-//                 // redirect the browser to another page using the header() function to specify the target URL
-//                 header('Location: dashboard.php');
-//             }
-//     }
-
-
-
-
-
-
-
-
-
-
 ?>
-
-
 
 </html>
