@@ -156,7 +156,7 @@ either browse for tutors depending on the specific class or see their previous f
         <a class="nav-link" style="align-content:right;" href="#">Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" style="align-content:right;" href="signin.html">Log Out</a>
+        <a class="nav-link" style="align-content:right;" href="signin.php">Log Out</a>
       </li>
     </ul>
   </nav>
@@ -164,7 +164,7 @@ either browse for tutors depending on the specific class or see their previous f
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
   
-    <h1 class="display-4">Welcome Back, <?php if(isset($_COOKIE['email']) or isset($_COOKIE['name'])) echo $_COOKIE['name']; ?></h1>
+    <h1 class="display-4">Welcome Back, <?php if(isset($_COOKIE['name_user'])){echo $_COOKIE['name_user'];}else{echo'Hello!';} ?></h1>
     <p class="lead">Choose from your favorited tutors below or select a class and browse for one! </p>
   </div>
 </div>

@@ -1,8 +1,5 @@
 <!-- // Aria Kumar(ak8fk) and Neha Chopra(nc3tq)
  -->
-<?php
-session_start();
-?>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href='style.css' rel='stylesheet'>
@@ -43,8 +40,8 @@ session_start();
             <div class="logo">
                 <h1 class="text-center head">Tutor Hoos</h1>
             </div>
-            <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" onsubmit="return (checkEmail())">
-                <input type="text" class="form-style form-control" name="email " id="email" placeholder="Email" autofocus required />
+            <form action="signin.php" method="post" onsubmit="return (checkEmail())">
+                <input type="text" class="form-style form-control" name="email" id="email" placeholder="Email" autofocus required />
                 <div id="user-msg" class="feedback"></div>
                 <br />
                 <input type="password" class="form-style form-control" name="pwd" id="pwd" placeholder="Password" required />
@@ -62,6 +59,8 @@ session_start();
     </div>
 
     <?php
+    session_start();
+
 
 
     $hostname = "localhost";
@@ -81,51 +80,92 @@ session_start();
     }
 
 
-    $username = "";
-    $email = "";
-    if (isset($_POST['login'])) {
-        $email = $_POST['email'];
-        $pwd = $_POST['pwd'];
 
-        $sql_u = "SELECT * FROM project WHERE email='$email'";
-        $res_e = mysqli_query($db, $sql_e);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } else {
+        echo "Connected successfully";
+    }
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        if (mysqli_num_rows($res_u) > 0) {
-            $name_error = "Sorry... username already taken";
-        } else if (mysqli_num_rows($res_e) > 0) {
-            $email_error = "Sorry... email already taken";
-        } else {
-            $query = "INSERT INTO users (username, email, password) 
-                      VALUES ('$username', '$email', '" . md5($password) . "')";
-            $results = mysqli_query($db, $query);
-            echo 'Saved!';
-            exit();
+        $email = $_POST["email"];
+        $pwd = $_POST["pwd"];
+        // $name = $_POST["name"];
+
+
+
+        if (isset($_POST['login'])) {
+            echo "Not working";
+            $select = mysqli_query($conn, "SELECT * FROM Students WHERE email = '$email' AND user_password = '$pwd'");
+            if (mysqli_num_rows($select) > 0) {
+                $row = mysqli_fetch_array($select);
+                $username = $row['name_user'];
+                // $user_name = mysqli_query($conn, "SELECT * FROM Students WHERE name_user = '$_POST['name']'");
+                $_SESSION['email'] = $email;
+                setcookie('name_user', $username, time()+3600);
+                setcookie('email', $email, time() + 3600);
+                setcookie('pwd', $pwd, time() + 3600);
+                header('Location: dashboard.php');
+                echo "Working";
+            } else {
+                echo "Either email or password is incorrect";
+            }
         }
     }
 
+    // if (isset($email)) {
+    //     // -- $email = $_POST['email'];
+    //     // -- $pwd = $_POST['pwd'];
+
+    //     $result1 = mysql_query(" SELECT name_user, user_password FROM Students WHERE name_user = '" . $email . "' and  user_password = '" . $pwd       . "'");
+
+
+    //     if (mysql_num_rows($result1) > 0) {
+    //         $_SESSION['name'] = $name;
+    //     } else {
+    //         echo 'The username or password are incorrect!';
+    //     }
+    // }
+
+    // mysql_close()
 
 
 
-    if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['email']) > 0) {
-            $email = trim($_POST['email']);
-            if (!ctype_alnum($email)) // ctype_alnum() check if the values contain only alphanumeric data
-                reject('Email');
 
-            if (isset($_POST['pwd'])) {
-                    $pwd = trim($_POST['pwd']);
-                    if (!ctype_alnum($pwd))
-                        reject('Password');
-                    else {
-                            // setcookie(name, value, expiery-time)
-                            // setcookie() function stores the submitted fields' name/value pair
-                            setcookie('email', $email, time() + 3600);
-                            setcookie('pwd', md5($pwd), time() + 3600); // create a hash conversion of password values using md5() function
+    // if (isset($_POST['login'])) {
 
-                            // redirect the browser to another page using the header() function to specify the target URL
-                            header('Location: dashboard.php');
-                        }
-                }
-        }
+    //     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+    //         exit('Invalid email address'); // Use your own error handling ;)
+    //     }
+    //     $select = mysqli_query($co      nn, "SELECT `email` FROM `project` WHERE `email` = '"   .   $ _ P      OST['e     m ail'] . "'") or exit(mysqli_error($conn));
+    //     if (mysqli_num_rows($select)) {
+    //         exit('This email is already being used');
+    //     }
+    // }
+
+
+
+
+    // if ($_SERVER['REQUEST_MET      HOD     ' ] == "POST" && strlen($_POST['email']) > 0) {
+    //     $email = trim($_POST['email']);
+    //     if (!ctype_alnum($email)) // ctype_alnum() check if the values contain only alphanumeric data
+    //         reject('Email');
+
+    //     if (isset($_POST['pwd'])) {
+    //         $pwd = trim($_POST['pwd']);
+    //         if (!ctype_alnum($pwd))
+    //             reject('Password');
+    //         else {
+    //             // setcookie(name, value, expiery-time)
+    //             // setcookie() function stores the submitted fields' name/value pair
+    //             setcookie('email', $email, time() + 3600);
+    //             setcookie('pwd', md5($pwd), time() + 3600); // create a hash conversion of password values using md5() function
+
+    //             // redirect the browser to another page using the header() function to specify the target URL
+    //             header('Location: dashboard.php');
+    //         }
+    //     }
+    // }
     ?>
 
 

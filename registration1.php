@@ -248,19 +248,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tutor = $_POST["tutor"];
 
 
-    $query = "SELECT * from Students where Email='$email'";
+    $query = "SELECT * from Students where email='$email'";
     if ($result = mysqli_query($conn, $query)) {
         if (mysqli_num_rows($result) > 0) {
-            echo "Exists";
+            echo "Email already exists!";
         } else {
             // $sql = "INSERT INTO Students(Name_User, Phone, Email,User_Password, Biography, Classes, Tutor) VALUES ('$name','$phone','$email','$pwd','$bio', '$classes', '$tutor')";
             $sql = "INSERT INTO Students (name_user, phone, email,user_password, biography, classes, tutor) 
-        VALUES ('$name','$phone','$email','$pwd','$bio', '$classes', '$tutor')";
-
-            echo "$name";
+        VALUES ('$name','$phone','$email','md5($pwd)','$bio', '$classes', '$tutor')";
+            // setcookie('name_user', $name, time() + 3600);
+            // setcookie('email', $email, time() + 3600);
+            // setcookie('pwd', $pwd, time() + 3600);
+            // header('Location: dashboard.php');
             if ($conn->query($sql) === TRUE) {
-                header('location:http://localhost/WebApplications/dashboard.php');
-
+                header('location:dashboard.php');
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
@@ -271,24 +272,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $conn->close();
 
 
-if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['name']) > 0)
-    {
-       $name = trim($_POST['name']);
-       if (!ctype_alnum($name))   // ctype_alnum() check if the values contain only alphanumeric data
-          reject('Name');
-            
-       if (isset($_POST['name']))
-       {
-          
-             // setcookie(name, value, expiery-time)
-             // setcookie() function stores the submitted fields' name/value pair
-             setcookie('name', $name, time()+3600);
-                        
-             // redirect the browser to another page using the header() function to specify the target URL
-             header('Location: dashboard.php');
-          
-       }
-    }
+// if ($_SERVER['REQUEST_METHOD'] == "POST" && strlen($_POST['name']) > 0) {
+//         $name = trim($_POST['name']);
+//         if (!ctype_alnum($name))   // ctype_alnum() check if the values contain only alphanumeric data
+//             reject('Name');
+
+//         if (isset($_POST['name'])) {
+
+//                 // setcookie(name, value, expiery-time)
+//                 // setcookie() function stores the submitted fields' name/value pair
+//                 setcookie('name', $name, time() + 3600);
+
+//                 // redirect the browser to another page using the header() function to specify the target URL
+//                 header('Location: dashboard.php');
+//             }
+//     }
 
 
 
