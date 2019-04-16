@@ -1,4 +1,5 @@
 <!-- // Aria Kumar(ak8fk) and Neha Chopra(nc3tq)
+<<<<<<< HEAD
 -->
 <?php
     session_start();
@@ -14,6 +15,9 @@
 
 
 
+=======
+ -->
+>>>>>>> 8b26423f92059e2c270ec8cb3eef9ab34c55325f
 <!DOCTYPE html>
 <html lang="en" class="gr__cs_virginia_edu">
 
@@ -263,6 +267,12 @@ ornare. Fusce imperdiet posuere metus.
 
 
 </body>
+
+<?php
+session_start(); 
+?>
+
+
 <script src="js/backdashboard.js"></script>
 
 

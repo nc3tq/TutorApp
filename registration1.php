@@ -99,6 +99,7 @@ function validatePassword(input) {
 
 <body>
 
+<<<<<<< HEAD
 <div class="container">
 <!-- <h1>Registration
 </h1> -->
@@ -146,6 +147,156 @@ $(document).ready(function() {
                                                         });
                   });
 </script>
+=======
+    <div class="container">
+        <!-- <h1>Registration
+        </h1> -->
+
+        <form action="registration1.php" method="post">
+            <fieldset>
+                <legend runat="server" visible="true" style="width:auto; margin-bottom: 0px; font-weight: bold; color: black;">
+                    Registration
+                </legend>
+
+                <div class="form-group">
+                    <label for="InputName" class="bmd-label-floating">Name (Ex. Jane Doe)</label>
+                    <input type="name" class="form-control" id="InputName" name="name" pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$">
+                </div>
+                <div class="form-group">
+                    <label for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
+                    <input type="email" name="email" class="form-control" id="InputEmail1" pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$">
+                    <span class="bmd-help">This email will be used during login.</span>
+                </div>
+                <div class="form-group">
+                    <label for="InputPassword1" class="bmd-label-floating">Password</label>
+                    <input type="password" name="pwd" class="form-control" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                    <span class="bmd-help">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</span>
+
+                </div>
+                <div class="form-group">
+                    <label for="InputPassword2" class="bmd-label-floating">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm_password" oninput="validatePassword(this)">
+                </div>
+                <div class="form-group">
+                    <label for="InputPhone" class="bmd-label-floating">Phone Number (Ex. 123-123-123)</label>
+                    <input type="phone" name="phone" class="form-control" id="InputPhone" pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$">
+                </div>
+
+                <div class="form-group">
+                    <label for="biography" class="bmd-label-floating">Biography</label>
+                    <textarea class="form-control" name="bio" id="biography" rows="5"></textarea>
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('#multiple-checkboxes').multiselect({
+                            filterPlaceholder: 'Search',
+                            enableCaseInsensitiveFiltering: true,
+                            includeSelectAllOption: true,
+                        });
+                    });
+                </script>
+
+                <div class='form-group'>
+
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+
+                    <strong>Select classes you would like to get tutored on:</strong>
+                    <select for='classes' id="multiple-checkboxes" multiple="multiple" name="classes[]" class="form-control">
+                        <optgroup label='Computer Science'>
+                            <option id="cs1110">CS 1110</option>
+                            <option id="cs2110">CS 2110</option>
+                            <option id="cs2150">CS 2150</option>
+                            <option id="cs2120">CS 2120</option>
+                            <option id="cs3330">CS 3330</option>
+                            <option id="cs4102">CS 4102</option>
+                            <option id="cs4414">CS 4414</option>
+                        </optgroup>
+                        <optgroup label='Applied Mathematics'>
+                            <option id="apma3080">APMA 3080</option>
+                            <option id="apma3100">APMA 3100</option>
+                        </optgroup>
+                        <optgroup label='Commerce'>
+                            <option id="comm2010">COMM 2010</option>
+                            <option id="comm2020">COMM 2020</option>
+                            <option id="comm3410">COMM 3410</option>
+                            <option id="comm3420">COMM 3420</option>
+                            <option id="comm3720">COMM 3720</option>
+                        </optgroup>
+                    </select>
+
+
+
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="InputPhoto" class="bmd-label-floating">Profile photo</label>
+                    <input type="file" class="form-control-file" id="InputPhoto" accept="image/*">
+
+                </div>
+                <script>
+                    show1 = () => {
+                        document.getElementById('tutor_profile').style.display = 'none';
+                    }
+                    show2 = function() {
+                        document.getElementById('tutor_profile').style.display = 'block';
+                    }
+
+                    // These are my arrow and anonymous functions that are used to hide and display content 
+                </script>
+
+                <div class="radio" id='tutoringprofile'>
+
+                    <p>Would you like to sign up to become a tutor?</p>
+
+                    <label> <input type="radio" id="yes" name="tutor" value="1" onclick="show2();">Yes<br></label>
+                    <label><input type="radio" id="no" name="tutor" value="0" onclick="show1();"> No<br></label>
+                </div>
+
+                <div id="tutor_profile" style="display:none;" class="form-group">
+
+
+                    <div class="form-group">
+                        <label for="biography" class="bmd-label-floating">Biography</label>
+                        <textarea class="form-control" name="tutorbio" id="biography" rows="5"></textarea>
+                    </div>
+
+
+                    <div class='form-group'>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+
+
+                        <strong>Select classes you would like to get tutored for (Press command/ctrl when you want to multi-select):</strong>
+                        <select id="multiple-checkboxes" name="tutorclass[]" multiple="multiple" class="form-control">
+
+                            <optgroup label='Computer Science'>
+                                <option id="cs1110">CS 1110</option>
+                                <option id="cs2110">CS 2110</option>
+                                <option id="cs2150">CS 2150</option>
+                                <option id="cs2120">CS 2120</option>
+                                <option id="cs3330">CS 3330</option>
+                                <option id="cs4102">CS 4102</option>
+                                <option id="cs4414">CS 4414</option>
+                            </optgroup>
+                            <optgroup label='Applied Mathematics'>
+                                <option id="apma3080">APMA 3080</option>
+                                <option id="apma3100">APMA 3100</option>
+                            </optgroup>
+                            <optgroup label='Commerce'>
+                                <option id="comm2010">COMM 2010</option>
+                                <option id="comm2020">COMM 2020</option>
+                                <option id="comm3410">COMM 3410</option>
+                                <option id="comm3420">COMM 3420</option>
+                                <option id="comm3720">COMM 3720</option>
+                            </optgroup>
+                        </select>
+>>>>>>> 8b26423f92059e2c270ec8cb3eef9ab34c55325f
 
 <div class='form-group'>
 
@@ -184,6 +335,7 @@ $(document).ready(function() {
 
 
 
+<<<<<<< HEAD
 <div class="form-group">
 <label for="InputPhoto" class="bmd-label-floating">Profile photo</label>
 <input type="file" class="form-control-file" id="InputPhoto" accept="image/*">
@@ -207,6 +359,15 @@ show2 = function() {
 <label> <input type="radio" id="yes" name="tutor" value="1" onclick="show2();"> Yes<br></label>
 <label><input type="radio" id="no" name="tutor" value="0" onclick="show1();"> No<br></label>
 </div>
+=======
+</body>
+<?php
+
+$hostname = "localhost";
+$database = "project";
+$username = "nc3tq";
+$password = "WebPL4640";
+>>>>>>> 8b26423f92059e2c270ec8cb3eef9ab34c55325f
 
 <div id="tutor_profile" style="display:none;" class="form-group">
 
@@ -221,6 +382,7 @@ show2 = function() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
 
+<<<<<<< HEAD
 
 
 <strong>Select classes you would like to get tutored for (Press command/ctrl when you want to multi-select):</strong>
@@ -352,3 +514,55 @@ show2 = function() {
     
     ?>
 
+=======
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST["name"];
+    $phone = $_POST["phone"];
+    $email = $_POST["email"];
+    $pwd = $_POST["pwd"];
+    $bio = $_POST["bio"];
+    $tutor = $_POST["tutor"];
+    $tutor_name = $_POST["name"];
+    $tutor_bio = $_POST['tutorbio'];
+    $tutor_classes = implode(',', $_POST['tutorclass']);
+
+
+    // $classes = implode(',', $_POST['classes']);
+    echo $tutor_classes;
+
+
+
+    $query = "SELECT * from Students where email='$email'";
+    if ($result = mysqli_query($conn, $query)) {
+        if (mysqli_num_rows($result) > 0) {
+            echo "Email already exists!";
+        } else {
+            // $sql = "INSERT INTO Students(Name_User, Phone, Email,User_Password, Biography, Classes, Tutor) VALUES ('$name','$phone','$email','$pwd','$bio', '$classes', '$tutor')";
+            $sql = "INSERT INTO Students (name_user, phone, email,user_password, biography, tutor) 
+        VALUES ('$name','$phone','$email','$pwd','$bio', '$tutor')";
+            if (($_POST['tutor'] == '1')) {
+                // echo "working";
+                $sql1 = "INSERT INTO Tutor (tutor_name, tutor_bio, tutor_classes) 
+            VALUES ('$name','$tutor_bio', '$tutor_classes')";
+                mysqli_query($conn, $sql1);
+                // echo $sql1;
+            }
+            setcookie('name_user', $name, time() + 3600);
+            setcookie('email', $email, time() + 3600);
+            setcookie('pwd', $pwd, time() + 3600);
+            // header('Location: dashboard.php');
+            if ($conn->query($sql) === TRUE) {
+                header('location:dashboard.php');
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
+    }
+}
+
+$conn->close();
+?>
+
+</html>
+>>>>>>> 8b26423f92059e2c270ec8cb3eef9ab34c55325f
