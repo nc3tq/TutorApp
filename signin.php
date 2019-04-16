@@ -58,6 +58,7 @@
         </div>
     </div>
     <?php
+    // Starts a session with the localhost, database, username, and password
     session_start();
     $hostname = "localhost";
     $database = "project";
@@ -68,7 +69,6 @@
     $conn = new mysqli($hostname, $username, $password, $database);
 
 
-
     function reject($entry)
     {
         echo 'Please <a href="signin.php">Log in </a>';
@@ -76,12 +76,16 @@
     }
 
 
-
+    // sees if the connection has failed or has been successful
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     } else {
         echo "Connected successfully";
     }
+
+    // This allows the user to signin to the account. It checks to see if the user is in the database and
+    // if she or he is then they would be redirected to the dashboard. If not, then they will get an error that 
+    // the email or password is incorrect and would need to sign up. 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $email = $_POST["email"];
@@ -98,7 +102,9 @@
             if (mysqli_num_rows($select) > 0) {
                 $row = mysqli_fetch_array($select);
                 $username = $row['name_user'];
-                // $user_name = mysqli_query($conn, "SELECT * FROM Students WHERE name_user = '$_POST['name']'");
+                // This sets a cookie for the new user and also starts a session based on the email and
+                // redirects the user to the dashboard page. 
+                
                 $_SESSION['email'] = $email;
                 setcookie('name_user', $username, time() + 3600);
                 setcookie('email', $email, time() + 3600);
@@ -106,6 +112,7 @@
                 header('Location: dashboard.php');
                 echo "Working";
             } else {
+                // This validates to see if the username was typed in correctly. 
                 echo "Either email or password is incorrect";
             }
         }

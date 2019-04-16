@@ -14,6 +14,9 @@ function start() {
         var star = allStars[i];
         star.onclick = function() {
             if(this.getAttribute("class") == "far fa-star") {
+
+                // $newfav = 'INSERT INTO Students (tutor_name) VALUES ("'.$row['iduser'].'","'.$_GET['IDp'].'");';    //IDp = ID product obtained from URL
+
                 this.setAttribute("class", "fas fa-star");
             }
             else

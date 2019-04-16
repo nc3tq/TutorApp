@@ -15,8 +15,9 @@ if ($conn->connect_error) {
     echo "Connected successfully";
 }
 
-
-
+// This gets the method for the post and and sees if a user has registered before. If they have, then 
+// an error will show and they will need to login again. If they have not, then their information will 
+// be stored in the database. 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST["name"];
     $phone = $_POST["phone"];
@@ -27,11 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tutor_name = $_POST["name"];
 
 
-
     // $classes = implode(',', $_POST['classes']);
 
 
-
+    // If the user chooses to be a tutor, then those credentials will be added to a new table. 
     $query = "SELECT * from Students where email='$email'";
     if ($result = mysqli_query($conn, $query)) {
         if (mysqli_num_rows($result) > 0) {
@@ -44,11 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $tutor_bio = $_POST['tutorbio'];
                 $tutor_classes = implode(',', $_POST['tutorclass']);
                 // echo "working";
-                $sql1 = "INSERT INTO Tutor (tutor_name, tutor_bio, tutor_classes) 
-            VALUES ('$name','$tutor_bio', '$tutor_classes')";
+                $sql1 = "INSERT INTO Tutor (tutor_name, tutor_bio, tutor_classes,tutor_email) 
+            VALUES ('$name','$tutor_bio', '$tutor_classes','$email')";
                 mysqli_query($conn, $sql1);
                 // echo $sql1;
             }
+            //A cookie will be set for the user so that when they login they will be redirected to the
+            // dashboard and can start using the tutor app.
             setcookie('name_user', $name, time() + 3600);
             setcookie('email', $email, time() + 3600);
             setcookie('pwd', $pwd, time() + 3600);
