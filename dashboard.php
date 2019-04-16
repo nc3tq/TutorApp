@@ -1,12 +1,6 @@
 <!-- // Aria Kumar(ak8fk) and Neha Chopra(nc3tq)
  -->
-<?php
-session_start(); 
-?>
-
-
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="gr__cs_virginia_edu">
 
 <head>
@@ -254,6 +248,12 @@ else
 
 
 </body>
+
+<?php
+session_start(); 
+?>
+
+
 <script src="js/backdashboard.js"></script>
 
 

@@ -102,7 +102,7 @@
 
 
                     <strong>Select classes you would like to get tutored on:</strong>
-                    <select for='classes'id="multiple-checkboxes" multiple="multiple" name="classes[]" class="form-control">
+                    <select for='classes' id="multiple-checkboxes" multiple="multiple" name="classes[]" class="form-control">
                         <optgroup label='Computer Science'>
                             <option id="cs1110">CS 1110</option>
                             <option id="cs2110">CS 2110</option>
@@ -152,7 +152,7 @@
 
                     <p>Would you like to sign up to become a tutor?</p>
 
-                    <label> <input type="radio" id="yes" name="tutor" value="1" onclick="show2();"> Yes<br></label>
+                    <label> <input type="radio" id="yes" name="tutor" value="1" onclick="show2();">Yes<br></label>
                     <label><input type="radio" id="no" name="tutor" value="0" onclick="show1();"> No<br></label>
                 </div>
 
@@ -242,9 +242,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pwd = $_POST["pwd"];
     $bio = $_POST["bio"];
     $tutor = $_POST["tutor"];
+    $tutor_name = $_POST["name"];
+    $tutor_bio = $_POST['tutorbio'];
+    $tutor_classes = implode(',', $_POST['tutorclass']);
 
-    $classes = implode(',', $_POST['classes']);
-    echo $classes;
+
+    // $classes = implode(',', $_POST['classes']);
+    echo $tutor_classes;
 
 
 
@@ -254,11 +258,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Email already exists!";
         } else {
             // $sql = "INSERT INTO Students(Name_User, Phone, Email,User_Password, Biography, Classes, Tutor) VALUES ('$name','$phone','$email','$pwd','$bio', '$classes', '$tutor')";
-            $sql = "INSERT INTO Students (name_user, phone, email,user_password, biography, classes, tutor) 
-        VALUES ('$name','$phone','$email','md5($pwd)','$bio', '$classes', '$tutor')";
-            // setcookie('name_user', $name, time() + 3600);
-            // setcookie('email', $email, time() + 3600);
-            // setcookie('pwd', $pwd, time() + 3600);
+            $sql = "INSERT INTO Students (name_user, phone, email,user_password, biography, tutor) 
+        VALUES ('$name','$phone','$email','$pwd','$bio', '$tutor')";
+            if (($_POST['tutor'] == '1')) {
+                // echo "working";
+                $sql1 = "INSERT INTO Tutor (tutor_name, tutor_bio, tutor_classes) 
+            VALUES ('$name','$tutor_bio', '$tutor_classes')";
+                mysqli_query($conn, $sql1);
+                // echo $sql1;
+            }
+            setcookie('name_user', $name, time() + 3600);
+            setcookie('email', $email, time() + 3600);
+            setcookie('pwd', $pwd, time() + 3600);
             // header('Location: dashboard.php');
             if ($conn->query($sql) === TRUE) {
                 header('location:dashboard.php');
