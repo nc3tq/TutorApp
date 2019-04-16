@@ -238,7 +238,7 @@ if (!isset($_COOKIE['email']) && !isset($_SESSION['email'])) {
 
 </body>
 
-<script src="js/backdashboard.js"></script>
+<script src="js/back.js"></script>
 
 <?php
 session_start();
@@ -271,9 +271,9 @@ if (isset($_GET['name'])) {
       echo '<table style="width: 100%;" border="1px" class="bios" class="hoverTable">';
       echo '<tr>';
       echo '<td>';
-      echo '<font color="yellow" size="5%"><i class="fas fa-star"></i></font>';
+      echo '<font color="yellow" size="5%"><i class="fas fa-star" onclick="start()"></i></font>';
       echo '<img src="images/blank.jpg"><br>';
-      echo '<div id="name">'.  $row["tutor_name"]. '</div><br>';
+      echo '<div id="name">' .  $row["tutor_name"] . '</div><br>';
       echo "<br>";
       echo $row["tutor_bio"];
       echo "<br>";
@@ -296,29 +296,58 @@ if (isset($_GET['name'])) {
 
   if ($result->num_rows > 0) {
 
-    while ($row = $result->fetch_assoc()) {
-      echo '<table style="width: 50%; align:center;" border="1px" class="bios" class="hoverTable">';
-      echo '<tr>';
-      echo '<td>';
-      echo '<font color="yellow" size="5%"><i class="fas fa-star"></i></font>';
+    // while ($row = $result->fetch_assoc()) {
+    $columns = 3;
+    $i = 0;
+    while ($row = mysqli_fetch_array($result)) {
+      //if this is first value in row, create new row
+      echo '<table border="1px" class="bios" class="hoverTable">';
+      if ($i % $columns == 0) {
+        echo "<tr>";
+      }
+      echo "<td>";
+      echo '<font color="yellow" size="5%"><i class="fas fa-star" onclick="start()"></i></font>';
       echo '<img src="images/blank.jpg"><br>';
-      echo '<div id="name">'.  $row["tutor_name"]. '</div><br>';
+      echo '<div id="name">' .  $row["tutor_name"] . '</div><br>';
       echo "<br>";
       echo $row["tutor_bio"];
       echo "<br>";
       echo $row["tutor_classes"];
       echo "<br>";
-      echo '</td>';
-      echo '</tr>';
+      //if this is last value in row, end row
+      if ($i % $columns == 0) {
+        echo "</tr>";
+      }
       echo '</table>';
+      $i++;
 
     }
+
+
+
+
+
+    // echo '<table style="width: 50%; align:center;" border="1px" class="bios" class="hoverTable">';
+    // echo '<tr>';
+    // echo '<td>';
+    // echo '<font color="yellow" size="5%"><i class="fas fa-star"></i></font>';
+    // echo '<img src="images/blank.jpg"><br>';
+    // echo '<div id="name">' .  $row["tutor_name"] . '</div><br>';
+    // echo "<br>";
+    // echo $row["tutor_bio"];
+    // echo "<br>";
+    // echo $row["tutor_classes"];
+    // echo "<br>";
+    // echo '</td>';
+    // echo '</tr>';
+    // echo '</table>';
   } else {
     echo "0 results";
   }
 }
 
-?>
+
+  ?>
 
 
-</html>
+  </html>
