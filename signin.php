@@ -57,12 +57,8 @@
             </div>
         </div>
     </div>
-
     <?php
     session_start();
-
-
-
     $hostname = "localhost";
     $database = "project";
     $username = "nc3tq";
@@ -102,7 +98,7 @@
                 $username = $row['name_user'];
                 // $user_name = mysqli_query($conn, "SELECT * FROM Students WHERE name_user = '$_POST['name']'");
                 $_SESSION['email'] = $email;
-                setcookie('name_user', $username, time()+3600);
+                setcookie('name_user', $username, time() + 3600);
                 setcookie('email', $email, time() + 3600);
                 setcookie('pwd', $pwd, time() + 3600);
                 header('Location: dashboard.php');
@@ -112,60 +108,6 @@
             }
         }
     }
-
-    // if (isset($email)) {
-    //     // -- $email = $_POST['email'];
-    //     // -- $pwd = $_POST['pwd'];
-
-    //     $result1 = mysql_query(" SELECT name_user, user_password FROM Students WHERE name_user = '" . $email . "' and  user_password = '" . $pwd       . "'");
-
-
-    //     if (mysql_num_rows($result1) > 0) {
-    //         $_SESSION['name'] = $name;
-    //     } else {
-    //         echo 'The username or password are incorrect!';
-    //     }
-    // }
-
-    // mysql_close()
-
-
-
-
-    // if (isset($_POST['login'])) {
-
-    //     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-    //         exit('Invalid email address'); // Use your own error handling ;)
-    //     }
-    //     $select = mysqli_query($co      nn, "SELECT `email` FROM `project` WHERE `email` = '"   .   $ _ P      OST['e     m ail'] . "'") or exit(mysqli_error($conn));
-    //     if (mysqli_num_rows($select)) {
-    //         exit('This email is already being used');
-    //     }
-    // }
-
-
-
-
-    // if ($_SERVER['REQUEST_MET      HOD     ' ] == "POST" && strlen($_POST['email']) > 0) {
-    //     $email = trim($_POST['email']);
-    //     if (!ctype_alnum($email)) // ctype_alnum() check if the values contain only alphanumeric data
-    //         reject('Email');
-
-    //     if (isset($_POST['pwd'])) {
-    //         $pwd = trim($_POST['pwd']);
-    //         if (!ctype_alnum($pwd))
-    //             reject('Password');
-    //         else {
-    //             // setcookie(name, value, expiery-time)
-    //             // setcookie() function stores the submitted fields' name/value pair
-    //             setcookie('email', $email, time() + 3600);
-    //             setcookie('pwd', md5($pwd), time() + 3600); // create a hash conversion of password values using md5() function
-
-    //             // redirect the browser to another page using the header() function to specify the target URL
-    //             header('Location: dashboard.php');
-    //         }
-    //     }
-    // }
     ?>
 
 

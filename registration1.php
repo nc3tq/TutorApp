@@ -1,3 +1,69 @@
+<?php
+
+$hostname = "localhost";
+$database = "project";
+$username = "nc3tq";
+$password = "WebPL4640";
+
+
+$conn = new mysqli($hostname, $username, $password, $database);
+
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    echo "Connected successfully";
+}
+
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST["name"];
+    $phone = $_POST["phone"];
+    $email = $_POST["email"];
+    $pwd = $_POST["pwd"];
+    $bio = $_POST["bio"];
+    $tutor = $_POST["tutor"];
+    $tutor_name = $_POST["name"];
+
+
+
+    // $classes = implode(',', $_POST['classes']);
+
+
+
+    $query = "SELECT * from Students where email='$email'";
+    if ($result = mysqli_query($conn, $query)) {
+        if (mysqli_num_rows($result) > 0) {
+            echo "Email already exists!";
+        } else {
+            // $sql = "INSERT INTO Students(Name_User, Phone, Email,User_Password, Biography, Classes, Tutor) VALUES ('$name','$phone','$email','$pwd','$bio', '$classes', '$tutor')";
+            $sql = "INSERT INTO Students (name_user, phone, email,user_password, biography, tutor) 
+        VALUES ('$name','$phone','$email','$pwd','$bio', '$tutor')";
+            if (($_POST['tutor'] == '1')) {
+                $tutor_bio = $_POST['tutorbio'];
+                $tutor_classes = implode(',', $_POST['tutorclass']);
+                // echo "working";
+                $sql1 = "INSERT INTO Tutor (tutor_name, tutor_bio, tutor_classes) 
+            VALUES ('$name','$tutor_bio', '$tutor_classes')";
+                mysqli_query($conn, $sql1);
+                // echo $sql1;
+            }
+            setcookie('name_user', $name, time() + 3600);
+            setcookie('email', $email, time() + 3600);
+            setcookie('pwd', $pwd, time() + 3600);
+            // header('Location: dashboard.php');
+            if ($conn->query($sql) === TRUE) {
+                header('location:dashboard.php');
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
+    }
+}
+
+$conn->close();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -134,7 +200,7 @@
 
                 <div class="form-group">
                     <label for="InputPhoto" class="bmd-label-floating">Profile photo</label>
-                    <input type="file" class="form-control-file" id="InputPhoto" accept="image/*">
+                    <input type="file" class="form-control-file" name="photo" id="InputPhoto" accept="image/*">
 
                 </div>
                 <script>
@@ -216,71 +282,5 @@
 
 
 </body>
-<?php
-
-$hostname = "localhost";
-$database = "project";
-$username = "nc3tq";
-$password = "WebPL4640";
-
-
-$conn = new mysqli($hostname, $username, $password, $database);
-
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} else {
-    echo "Connected successfully";
-}
-
-
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST["name"];
-    $phone = $_POST["phone"];
-    $email = $_POST["email"];
-    $pwd = $_POST["pwd"];
-    $bio = $_POST["bio"];
-    $tutor = $_POST["tutor"];
-    $tutor_name = $_POST["name"];
-    $tutor_bio = $_POST['tutorbio'];
-    $tutor_classes = implode(',', $_POST['tutorclass']);
-
-
-    // $classes = implode(',', $_POST['classes']);
-    echo $tutor_classes;
-
-
-
-    $query = "SELECT * from Students where email='$email'";
-    if ($result = mysqli_query($conn, $query)) {
-        if (mysqli_num_rows($result) > 0) {
-            echo "Email already exists!";
-        } else {
-            // $sql = "INSERT INTO Students(Name_User, Phone, Email,User_Password, Biography, Classes, Tutor) VALUES ('$name','$phone','$email','$pwd','$bio', '$classes', '$tutor')";
-            $sql = "INSERT INTO Students (name_user, phone, email,user_password, biography, tutor) 
-        VALUES ('$name','$phone','$email','$pwd','$bio', '$tutor')";
-            if (($_POST['tutor'] == '1')) {
-                // echo "working";
-                $sql1 = "INSERT INTO Tutor (tutor_name, tutor_bio, tutor_classes) 
-            VALUES ('$name','$tutor_bio', '$tutor_classes')";
-                mysqli_query($conn, $sql1);
-                // echo $sql1;
-            }
-            setcookie('name_user', $name, time() + 3600);
-            setcookie('email', $email, time() + 3600);
-            setcookie('pwd', $pwd, time() + 3600);
-            // header('Location: dashboard.php');
-            if ($conn->query($sql) === TRUE) {
-                header('location:dashboard.php');
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-        }
-    }
-}
-
-$conn->close();
-?>
 
 </html>

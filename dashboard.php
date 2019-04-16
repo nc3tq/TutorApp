@@ -1,5 +1,12 @@
 <!-- // Aria Kumar(ak8fk) and Neha Chopra(nc3tq)
  -->
+<?php
+
+if (!isset($_COOKIE['email']) && !isset($_SESSION['email'])) {
+  header('Location: signin.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en" class="gr__cs_virginia_edu">
 
@@ -33,17 +40,14 @@
 
   <!-- Awesome Fonts -->
   <link href="style/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
-<style>
-#name{
-  font-weight:bold;
-}
-
-
-</style>
+  <style>
+    #name {
+      font-weight: bold;
+    }
+  </style>
 
 
 
@@ -57,17 +61,9 @@
   <script src="./WebApplications/jquery.min.js"></script>
   <script src="./WebApplications/bootstrap.min.js"></script>
 
-
-<?php
-
-if(isset($_COOKIE['email']) or isset($_COOKIE['name'])){
-?>
-
-
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="dashboard.html">Tutor Hoos</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -75,8 +71,7 @@ if(isset($_COOKIE['email']) or isset($_COOKIE['name'])){
       <ul class="navbar-nav mr-auto">
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             CS 2150
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -87,8 +82,7 @@ if(isset($_COOKIE['email']) or isset($_COOKIE['name'])){
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             CS 2110
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -99,8 +93,7 @@ if(isset($_COOKIE['email']) or isset($_COOKIE['name'])){
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             COMM 2010
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -111,8 +104,7 @@ if(isset($_COOKIE['email']) or isset($_COOKIE['name'])){
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             COMM 2020
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -123,8 +115,7 @@ if(isset($_COOKIE['email']) or isset($_COOKIE['name'])){
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             EVSC 2020
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -141,8 +132,8 @@ if(isset($_COOKIE['email']) or isset($_COOKIE['name'])){
       </form>
 
 
-<!-- Navigation bar for all the classes enrolled in. Students can select which website to go to:
-either browse for tutors depending on the specific class or see their previous favorited tutors -->
+      <!-- Navigation bar for all the classes enrolled in. Students can select which website to go to:
+      either browse for tutors depending on the specific class or see their previous favorited tutors -->
 
     </div>
     <ul class="navbar-nav mr-auto my-lg-0 pull-right">
@@ -155,19 +146,23 @@ either browse for tutors depending on the specific class or see their previous f
     </ul>
   </nav>
 
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-  
-    <h1 class="display-4">Welcome Back, <?php if(isset($_COOKIE['name_user'])){echo $_COOKIE['name_user'];}else{echo'Hello!';} ?></h1>
-    <p class="lead">Choose from your favorited tutors below or select a class and browse for one! </p>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+
+      <h1 class="display-4">Welcome Back, <?php if (isset($_COOKIE['name_user'])) {
+                                            echo $_COOKIE['name_user'];
+                                          } else {
+                                            echo 'Hello!';
+                                          } ?></h1>
+      <p class="lead">Choose from your favorited tutors below or select a class and browse for one! </p>
+    </div>
   </div>
-</div>
-<!-- This is a display of all the favorited tutors. It is useful especially if a student wants to get quickly
-get into contact with one and schedule a meet up without having to search. -->
+  <!-- This is a display of all the favorited tutors. It is useful especially if a student wants to get quickly
+      get into contact with one and schedule a meet up without having to search. -->
 
   <h3><b> COMM 2010: </b></h3>
   <table border="1px" class="bios" class="hoverTable">
-   
+
     <tr>
       <td id="comp">
         <font color="yellow" size="5%"><i class="fas fa-star"></i></font>
@@ -196,17 +191,17 @@ get into contact with one and schedule a meet up without having to search. -->
         Lorem ipsum dolor sit amet,
         consectetur adipiscing elit. Donec at ex vitae lectus vehicula congue. Mauris dictum dictum elit. Aenean
         semper augue ut erat gravida ornare. Fusce imperdiet posuere metus.
-       </td>
-       
-       
+      </td>
+
+
 
     </tr>
-    
-    </table>
-    
-    <h3><b> CS 2150: </b></h3>
-    
-    <table border="1px" class="bios">
+
+  </table>
+
+  <h3><b> CS 2150: </b></h3>
+
+  <table border="1px" class="bios">
     <tr>
       <td id="comm">
         <font color="yellow" size="5%"><i class="fas fa-star"></i></font>
@@ -240,21 +235,87 @@ get into contact with one and schedule a meet up without having to search. -->
     </tr>
   </table>
 
-  <?php
-}
-else
-    header('Location: signin.php');
-?>
-
 
 </body>
 
-<?php
-session_start(); 
-?>
-
-
 <script src="js/backdashboard.js"></script>
+
+<?php
+session_start();
+
+$hostname = "localhost";
+$database = "project";
+$username = "nc3tq";
+$password = "WebPL4640";
+
+
+$conn = new mysqli($hostname, $username, $password, $database);
+
+
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+} else {
+  echo "Connected successfully";
+}
+
+
+if (isset($_GET['name'])) {
+  $name = $_GET['name'];
+  $sql = "SELECT * FROM Tutor WHERE tutor_name='$name'";
+
+  $result = $conn->query($sql);
+
+  if (mysqli_num_rows($result) > 0) {
+
+    if ($row = $result->fetch_assoc()) {
+      echo '<table style="width: 100%;" border="1px" class="bios" class="hoverTable">';
+      echo '<tr>';
+      echo '<td>';
+      echo '<font color="yellow" size="5%"><i class="fas fa-star"></i></font>';
+      echo '<img src="images/blank.jpg"><br>';
+      echo '<div id="name">'.  $row["tutor_name"]. '</div><br>';
+      echo "<br>";
+      echo $row["tutor_bio"];
+      echo "<br>";
+      echo $row["tutor_classes"];
+      echo "<br>";
+      echo '</td>';
+      echo '</tr>';
+    }
+    echo '</table>';
+  } else {
+    echo "0 results";
+  }
+} else {
+
+  echo '<h3><b> Tutors </b></h3>';
+
+  $sql = "SELECT * FROM Tutor";
+
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+
+    while ($row = $result->fetch_assoc()) {
+      echo '<table border="1px" class="bios" class="hoverTable">';
+      echo '<tr>';
+      echo '<td>';
+      echo '<font color="yellow" size="5%"><i class="fas fa-star"></i></font>';
+      echo '<div id="name">'.  $row["tutor_name"]. '</div><br>';
+      echo "<br>";
+      echo $row["tutor_bio"];
+      echo "<br>";
+      echo $row["tutor_classes"];
+      echo "<br>";
+      echo '</td>';
+      echo '</tr>';
+    }
+  } else {
+    echo "0 results";
+  }
+}
+
+?>
 
 
 </html>
