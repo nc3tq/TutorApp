@@ -297,10 +297,11 @@ if (isset($_GET['name'])) {
   if ($result->num_rows > 0) {
 
     while ($row = $result->fetch_assoc()) {
-      echo '<table border="1px" class="bios" class="hoverTable">';
+      echo '<table style="width: 50%; align:center;" border="1px" class="bios" class="hoverTable">';
       echo '<tr>';
       echo '<td>';
       echo '<font color="yellow" size="5%"><i class="fas fa-star"></i></font>';
+      echo '<img src="images/blank.jpg"><br>';
       echo '<div id="name">'.  $row["tutor_name"]. '</div><br>';
       echo "<br>";
       echo $row["tutor_bio"];
@@ -309,6 +310,8 @@ if (isset($_GET['name'])) {
       echo "<br>";
       echo '</td>';
       echo '</tr>';
+      echo '</table>';
+
     }
   } else {
     echo "0 results";
