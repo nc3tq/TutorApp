@@ -47,6 +47,24 @@
                 <input type="password" class="form-style form-control" name="pwd" id="pwd" placeholder="Password" required />
                 <div id="pwd-msg" class="feedback"></div>
                 <br />
+                <div> <?php $hostname = "localhost";
+                        $database = "project";
+                        $username = "nc3tq";
+                        $password = "WebPL4640";
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                            $email = $_POST["email"];
+                            $pwd = $_POST["pwd"];
+
+                            $conn = new mysqli($hostname, $username, $password, $database);
+                            if (isset($_POST['login'])) {
+                                $select = mysqli_query($conn, "SELECT * FROM Students WHERE email = '$email' AND user_password = '$pwd'");
+                                if (mysqli_num_rows($select) == 0) {
+                                    echo '<div>Either email or password is incorrect </div>';
+                                }
+                            }
+                        } ?></div>
+                        <br />
                 <input type="submit" class="form-style login pull-center" name="login" value="Log in" />
                 <p><a href="#">Forgot Password?</a></p>
                 <p><a href="registration1.php">Register</a></p>
@@ -96,24 +114,21 @@
         echo $email;
 
         if (isset($_POST['login'])) {
-            echo "Not working";
             $select = mysqli_query($conn, "SELECT * FROM Students WHERE email = '$email' AND user_password = '$pwd'");
-            echo mysqli_num_rows($select) > 0;
             if (mysqli_num_rows($select) > 0) {
                 $row = mysqli_fetch_array($select);
                 $username = $row['name_user'];
                 // This sets a cookie for the new user and also starts a session based on the email and
                 // redirects the user to the dashboard page. 
-                
+
                 $_SESSION['email'] = $email;
                 setcookie('name_user', $username, time() + 3600);
                 setcookie('email', $email, time() + 3600);
                 setcookie('pwd', $pwd, time() + 3600);
                 header('Location: dashboard.php');
-                echo "Working";
             } else {
                 // This validates to see if the username was typed in correctly. 
-                echo "Either email or password is incorrect";
+                echo '<div Either email or password is incorrect </div>';
             }
         }
     }

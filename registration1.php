@@ -1,3 +1,5 @@
+<!-- // Aria Kumar(ak8fk) and Neha Chopra(nc3tq)
+ -->
 <?php
 
 $hostname = "localhost";
@@ -34,9 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // If the user chooses to be a tutor, then those credentials will be added to a new table. 
     $query = "SELECT * from Students where email='$email'";
     if ($result = mysqli_query($conn, $query)) {
-        if (mysqli_num_rows($result) > 0) {
-            echo "Email already exists!";
-        } else {
+        if (mysqli_num_rows($result) == 0) {
+
             // $sql = "INSERT INTO Students(Name_User, Phone, Email,User_Password, Biography, Classes, Tutor) VALUES ('$name','$phone','$email','$pwd','$bio', '$classes', '$tutor')";
             $sql = "INSERT INTO Students (name_user, phone, email,user_password, biography, tutor) 
         VALUES ('$name','$phone','$email','$pwd','$bio', '$tutor')";
@@ -127,31 +128,49 @@ $conn->close();
 
                 <div class="form-group">
                     <label for="InputName" class="bmd-label-floating">Name (Ex. Jane Doe)</label>
-                    <input type="name" class="form-control" id="InputName" name="name" pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$">
+                    <input type="name" class="form-control" id="InputName" name="name" pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$" required>
                 </div>
                 <div class="form-group">
                     <label for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
-                    <input type="email" name="email" class="form-control" id="InputEmail1" pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$">
+                    <input type="email" name="email" class="form-control" id="InputEmail1" pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$" required>
                     <span class="bmd-help">This email will be used during login.</span>
                 </div>
+                <div><?php $hostname = "localhost";
+                        $database = "project";
+                        $username = "nc3tq";
+                        $password = "WebPL4640";
+
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                            $email = $_POST["email"];
+                            $conn = new mysqli($hostname, $username, $password, $database);
+                            $query = "SELECT * from Students where email='$email'";
+                            if ($result = mysqli_query($conn, $query)) {
+                                if ($email != '') {
+                                    if (mysqli_num_rows($result) > 0) {
+                                        echo "Email already exists!";
+                                    }
+                                }
+                            }
+                        } ?></div>
+
                 <div class="form-group">
                     <label for="InputPassword1" class="bmd-label-floating">Password</label>
-                    <input type="password" name="pwd" class="form-control" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                    <input type="password" name="pwd" class="form-control" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                     <span class="bmd-help">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</span>
 
                 </div>
                 <div class="form-group">
                     <label for="InputPassword2" class="bmd-label-floating">Confirm Password</label>
-                    <input type="password" class="form-control" id="confirm_password" oninput="validatePassword(this)">
+                    <input type="password" class="form-control" id="confirm_password" oninput="validatePassword(this)" required>
                 </div>
                 <div class="form-group">
                     <label for="InputPhone" class="bmd-label-floating">Phone Number (Ex. 123-123-123)</label>
-                    <input type="phone" name="phone" class="form-control" id="InputPhone" pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$">
+                    <input type="phone" name="phone" class="form-control" id="InputPhone" pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$" required>
                 </div>
 
                 <div class="form-group">
                     <label for="biography" class="bmd-label-floating">Biography</label>
-                    <textarea class="form-control" name="bio" id="biography" rows="5"></textarea>
+                    <textarea class="form-control" name="bio" id="biography" rows="5" required></textarea>
                 </div>
                 <script type="text/javascript">
                     $(document).ready(function() {
@@ -202,7 +221,7 @@ $conn->close();
 
                 <div class="form-group">
                     <label for="InputPhoto" class="bmd-label-floating">Profile photo</label>
-                    <input type="file" class="form-control-file" name="photo" id="InputPhoto" accept="image/*">
+                    <input type="file" class="form-control-file" name="photo" id="InputPhoto" accept="image/*" required>
 
                 </div>
                 <script>
@@ -220,8 +239,8 @@ $conn->close();
 
                     <p>Would you like to sign up to become a tutor?</p>
 
-                    <label> <input type="radio" id="yes" name="tutor" value="1" onclick="show2();">Yes<br></label>
-                    <label><input type="radio" id="no" name="tutor" value="0" onclick="show1();"> No<br></label>
+                    <label> <input type="radio" id="yes" name="tutor" value="1" onclick="show2();" required>Yes<br></label>
+                    <label><input type="radio" id="no" name="tutor" value="0" onclick="show1();" required> No<br></label>
                 </div>
 
                 <div id="tutor_profile" style="display:none;" class="form-group">
@@ -229,7 +248,7 @@ $conn->close();
 
                     <div class="form-group">
                         <label for="biography" class="bmd-label-floating">Biography</label>
-                        <textarea class="form-control" name="tutorbio" id="biography" rows="5"></textarea>
+                        <textarea class="form-control" name="tutorbio" id="biography" rows="5" required></textarea>
                     </div>
 
 
@@ -239,8 +258,8 @@ $conn->close();
 
 
 
-                        <strong>Select classes you would like to get tutored for (Press command/ctrl when you want to multi-select):</strong>
-                        <select id="multiple-checkboxes" name="tutorclass[]" multiple="multiple" class="form-control">
+                        <strong>Select classes you would like to tutor for (Press command/ctrl when you want to multi-select):</strong>
+                        <select id="multiple-checkboxes" name="tutorclass[]" multiple="multiple" class="form-control" required>
 
                             <optgroup label='Computer Science'>
                                 <option id="cs1110">CS 1110</option>
@@ -270,8 +289,10 @@ $conn->close();
                 </div>
 
                 <div id='submit'>
-                    <input class="btn btn-primary btn-sm" href='dashboard.php' type="submit" name="submit" role="button">
+                    <input class="btn btn-primary btn-sm" href='dashboard.php' type="submit" name="submit" role="button" onsubmit=' return validateForm()'>
                 </div>
+
+
                 <!-- <button type="submit" href = 'dashboard.php'class="btn btn-primary btn-raised">Submit</button> -->
             </fieldset>
         </form>

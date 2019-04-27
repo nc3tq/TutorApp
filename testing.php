@@ -1,19 +1,6 @@
 <!-- // Aria Kumar(ak8fk) and Neha Chopra(nc3tq)
  -->
-<?php
-function validate()
-{
-  if (!isset($_COOKIE['email']) && !isset($_SESSION['email'])) {
-    header('Location: signin.php');
-  }
-}
-validate();
-
-
-?>
-
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en" class="gr__cs_virginia_edu">
 
 <head>
@@ -159,8 +146,8 @@ validate();
       <h1 class="display-4">Welcome Back, <?php if (isset($_COOKIE['name_user'])) {
                                             echo $_COOKIE['name_user'];
                                           } else {
-                                            echo 'Hello!';
-                                          } ?></h1>
+                                            header('Location: signin.php');
+                                            } ?></h1>
       <p class="lead">Choose from your favorited tutors below or select a class and browse for one! </p>
     </div>
   </div>
@@ -172,92 +159,10 @@ validate();
 
 <script src="js/back.js"></script>
 
-<?php
-// session_start();
-$hostname = "localhost";
-$database = "project";
-$username = "nc3tq";
-$password = "WebPL4640";
-$conn = new mysqli($hostname, $username, $password, $database);
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-} else {
-  echo "Connected successfully";
-}
-if (isset($_POST['search'])) {
-  echo $_POST['search'];
-  $sql = "SELECT  tutor_name, tutor_email, tutor_classes FROM Tutor WHERE tutor_name LIKE '%" . $tutor_name .  "%' OR tutor_email LIKE '%" . $email . "%' OR tutor_classes LIKE '%" . $tutor_classes . "%'";
-  $result = $conn->query($sql);
-  while ($row = mysql_fetch_array($result)) {
-    $tutor_name  = $row['tutor_name'];
-    $tutor_email = $row['tutor_email'];
-    $tutor_classes = $row['tutor_classes'];
-  }
-  // echo "<ul>\n";
-  // echo "<li>" . "<a  href=\"search.php?id=$tutor_name\">"    .$tutor_email . " " . $tutor_classes .  "</a></li>\n";
-  // echo "</ul>";
-}
-// This gets the name of the tutor and will create mini profiles for each user and will be displayed on the dashboard.
-// Ideally if a user clicks on the star then they will be able to access them in the future
-if (isset($_GET['name'])) {
-  $name = $_GET['name'];
-  $sql = "SELECT * FROM Tutor WHERE tutor_name='$name'";
-  $result = $conn->query($sql);
-  if (mysqli_num_rows($result) > 0) {
-    if ($row = $result->fetch_assoc()) {
-      echo '<table style="width: 100%;" border="1px" class="bios" class="hoverTable">';
-      echo '<tr>';
-      echo '<td>';
-      echo '<font color="yellow" size="5%"><i class="fas fa-star" onclick="start()"></i></font>';
-      echo '<img src="images/blank.jpg"><br>';
-      echo '<div id="name">' .  $row["tutor_name"] . '</div><br>';
-      echo '<div>' .  $row["tutor_email"] . '</div><br>';
-      echo $row["tutor_bio"];
-      echo "<br>";
-      echo $row["tutor_classes"];
-      echo "<br>";
-      echo '</td>';
-      echo '</tr>';
-    }
-    echo '</table>';
-  } else {
-    echo "0 results";
-  }
-} else {
-  echo '<h3><b> Tutors </b></h3>';
-  $sql = "SELECT * FROM Tutor";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-    // while ($row = $result->fetch_assoc()) {
-    $columns = 3;
-    $i = 0;
-    while ($row = mysqli_fetch_array($result)) {
-      //if this is first value in row, create new row
-      echo '<table style="width: 100%;" border="1px" class="bios" class="hoverTable">';
-      if ($i % $columns == 0) {
-        echo "<tr>";
-      }
-      echo "<td>";
-      echo '<font color="yellow" size="5%"><i class="fas fa-star" onclick="start()"></i></font>';
-      echo '<img src="images/blank.jpg"><br>';
-      echo '<div id="name">' .  $row["tutor_name"] . '</div><br>';
-      echo '<div' .  $row["tutor_email"] . '</div><br>';
-      echo $row["tutor_bio"];
-      echo "<br>";
-      echo $row["tutor_classes"];
-      echo "<br>";
-      //if this is last value in row, end row
-      if ($i % $columns == 0) {
-        echo "</tr>";
-      }
-      echo '</table>';
-      $i++;
-    }
-  } else {
-    echo "0 results";
+function validate(){
+  if (!isset($_COOKIE['email']) && !isset($_SESSION['email'])) {
+    header('Location: signin.php');
   }
 }
-?>
 
-
-</html>
+validate();
