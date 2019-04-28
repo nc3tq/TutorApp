@@ -88,11 +88,13 @@
         $pwd = $_POST["pwd"];
         // $name = $_POST["name"];
 
-
+        echo $pwd;
+        echo $email;
 
         if (isset($_POST['login'])) {
             echo "Not working";
             $select = mysqli_query($conn, "SELECT * FROM Students WHERE email = '$email' AND user_password = '$pwd'");
+            echo mysqli_num_rows($select) > 0;
             if (mysqli_num_rows($select) > 0) {
                 $row = mysqli_fetch_array($select);
                 $username = $row['name_user'];
