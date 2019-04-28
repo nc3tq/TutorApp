@@ -74,64 +74,7 @@ validate();
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            CS 2150
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="cs2150tutors.html">Tutors</a>
-            <a class="dropdown-item" href="cs2150favorite.html">Favorited Tutors</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="forums.html">Forum</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            CS 2110
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="cs2110tutors.html">Tutors</a>
-            <a class="dropdown-item" href="cs2110favorite.html">Favorited Tutors</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="forums.html">Forum</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            COMM 2010
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="commerce2010tutors.html">Tutors</a>
-            <a class="dropdown-item" href="comm2010favorite.html">Favorited Tutors</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="forums.html">Forum</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            COMM 2020
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="commerce2020tutors.html">Tutors</a>
-            <a class="dropdown-item" href="comm2020favorite.html">Favorited Tutors</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="forums.html">Forum</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            EVSC 2020
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="evsctutors2020tutors.html">Tutors</a>
-            <a class="dropdown-item" href="evsc2020favorite.html">Favorited Tutors</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="forums.html">Forum</a>
-          </div>
-        </li>
-      </ul>
       <form action="dashboard.php" class="form-inline my-2 my-lg-0 pull-right" style="padding-top: 10px;">
         <input class="form-control mr-sm-2" name='search' type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -153,7 +96,7 @@ validate();
   </nav>
 
   <div class="jumbotron jumbotron-fluid">
-    <div class="container">
+    <div ng-app="webproject" class="container">
       <!-- Sets a cookie name for the user, so that they are greeted when they login -->
 
       <h1 class="display-4">Welcome Back, <?php if (isset($_COOKIE['name_user'])) {
@@ -167,7 +110,28 @@ validate();
   <!-- This is a display of all the favorited tutors. It is useful especially if a student wants to get quickly
       get into contact with one and schedule a meet up without having to search. -->
 
+  <script>
+    $(document).ready(function() {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
 
+  <div>
+
+    <h3 style="padding-left: 20px;"><b> Tutors </b></h3>
+
+    <form action="dashboard.php" class="my-2 my-lg-0 pull-left" style="padding-left: 10px;">
+      <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="tooltip" data-placement="right" type="update" title="Favorite all the tutors you like by clicking on the stars
+       and then press this button once completed">Update Tutors</button>
+
+    </form>
+
+
+
+
+
+
+  </div>
 </body>
 
 <script src="js/back.js"></script>
@@ -224,7 +188,8 @@ if (isset($_GET['name'])) {
     echo "0 results";
   }
 } else {
-  echo '<h3><b> Tutors </b></h3>';
+  // echo '<h3><b> Tutors </b></h3>';
+
   $sql = "SELECT * FROM Tutor";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
@@ -238,7 +203,7 @@ if (isset($_GET['name'])) {
         echo "<tr>";
       }
       echo "<td>";
-      echo '<font color="yellow" size="5%"><i class="fas fa-star" onclick="start()"></i></font>';
+      echo '<font color="orange" size="5%"><i class="far fa-star" onclick="start()"></i></font>';
       echo '<img src="images/blank.jpg"><br>';
       echo '<div id="name">' .  $row["tutor_name"] . '</div><br>';
       echo '<div' .  $row["tutor_email"] . '</div><br>';
@@ -259,5 +224,9 @@ if (isset($_GET['name'])) {
 }
 ?>
 
+<script>
+
+console.log($('.theClass:checkbox:checked');
+</script>
 
 </html>

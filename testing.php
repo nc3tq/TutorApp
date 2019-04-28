@@ -159,10 +159,33 @@
 
 <script src="js/back.js"></script>
 
-function validate(){
-  if (!isset($_COOKIE['email']) && !isset($_SESSION['email'])) {
-    header('Location: signin.php');
-  }
-}
+<div>
+    <style>
+      .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+      }
 
-validate();
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+      }
+
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+      }
+    </style>
+    <h3 style="padding-left: 20px;"><b> Tutors </b></h3>
+    <div class="tooltip">Hover over me
+      <span class="tooltiptext">Tooltip text</span>
+    </div>
