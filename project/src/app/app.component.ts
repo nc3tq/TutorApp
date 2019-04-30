@@ -31,7 +31,7 @@ export class AppComponent {
      //this.http.post('http://localhost/cs4640s19/ngphp-post.php', data)
      .subscribe((data) => {
         console.log('Got data from backend', data);
-        this.responsedata = data;
+        // this.responsedata = data;
      }, (error) => {
         console.log('Error', error);
      })

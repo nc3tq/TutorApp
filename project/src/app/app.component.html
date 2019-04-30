@@ -1,105 +1,132 @@
 <style>
-    fieldset {
-      border: 3px solid black;
-      padding: 20px;
-    }
-  </style>
-  
-  <script>
-    function validatePassword(input) {
-      if (input.value != document.getElementById('password').value) {
-        input.setCustomValidity('Password Must be Matching.');
-      } else {
-        // input is valid -- reset the error message
-        input.setCustomValidity('');
-      }
-    }
-  </script>
-  
-  <body>
-  
-    <div class="container">
-      <!-- <h1>Registration
+  fieldset {
+    border: 3px solid black;
+    padding: 20px;
+  }
+</style>
+
+<script>
+
+</script>
+
+<body>
+
+  <div class="container">
+    <!-- <h1>Registration
           </h1> -->
-      {{ regForm.value | json }}
-      {{ regModel | json }}
-  
-  
-  
-      <form #regForm="ngForm" action="http://localhost/WebApplications/registrationcode.php" method="post">
-        <fieldset>
-          <legend runat="server" visible="true" style="width:auto; margin-bottom: 0px; font-weight: bold; color: black;">
-            Registration
-          </legend>
-  
-          <div class="form-group">
-            <label for="InputName" class="bmd-label-floating">Name (Ex. Jane Doe)</label>
-            <input type="name" [(ngModel)]="regModel.name" [class.is-invalid]="name.invalid" [(ngModel)]="regModel.name"
-              class="form-control" id="InputName" name="name"
-              pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$" required>
-            <!-- <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is requried</small> -->
-  
-          </div>
-          <div class="form-group">
-            <label for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
-            <input [(ngModel)]="regModel.email" type="email" name="email" class="form-control" id="InputEmail1"
-              pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$" required>
-            <span class="bmd-help">This email will be used during login.</span>
-          </div>
-          <div></div>
-  
-          <div class="form-group">
-            <label for="InputPassword1" class="bmd-label-floating">Password</label>
-            <input type="password" name="pwd" class="form-control" id="password"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-            <span class="bmd-help">Must contain at least one number and one uppercase and lowercase letter, and at least 8
-              or more characters</span>
-  
-          </div>
-          <div class="form-group">
-            <label for="InputPassword2" class="bmd-label-floating">Confirm Password</label>
-            <input type="password" class="form-control" id="confirm_password" oninput="validatePassword(this)" required>
-          </div>
-  
-          <div class="form-group">
-            <select [(ngModel)]="regModel.years" class="custom-select" name="year">
-              <option value="">What year are you? </option>
-              <option *ngFor="let year of years">{{year}} </option>
-            </select>
-          </div>
-  
-          <div class="form-group">
-            <label for="InputPhone" class="bmd-label-floating">Phone Number (Ex. 123-123-123)</label>
-            <input #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" [(ngModel)]="regModel.phone"
-              type="phone" name="phone" class="form-control" id="InputPhone" pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
-              required>
-          </div>
-  
+    {{ regForm.value | json }}
+    {{ regModel | json }}
+
+
+
+    <form #regForm="ngForm" action="http://localhost/WebApplications/registrationcode.php" method="post">
+      <fieldset>
+        <legend runat="server" visible="true" style="width:auto; margin-bottom: 0px; font-weight: bold; color: black;">
+          Registration
+        </legend>
+
+        <div class="form-group">
+          <label for="InputName" class="bmd-label-floating">Name (Ex. Jane Doe)</label>
+          <input type="name" [(ngModel)]="regModel.name" [class.is-invalid]="name.invalid" [(ngModel)]="regModel.name"
+            class="form-control" id="InputName" name="name"
+            pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$" required>
+          <!-- <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is requried</small> -->
+
+        </div>
+        <div class="form-group">
+          <label for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
+          <input [(ngModel)]="regModel.email" type="email" name="email" class="form-control" id="InputEmail1"
+            pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$" required>
+          <span class="bmd-help">This email will be used during login.</span>
+        </div>
+        <div></div>
+
+        <div class="form-group">
+          <label for="InputPassword1" class="bmd-label-floating">Password</label>
+          <input type="password" name="pwd" class="form-control" id="password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+          <span class="bmd-help">Must contain at least one number and one uppercase and lowercase letter, and at least 8
+            or more characters</span>
+
+        </div>
+        <div class="form-group">
+          <label for="InputPassword2" class="bmd-label-floating">Confirm Password</label>
+          <input type="password" class="form-control" id="confirm_password" oninput="validatePassword(this)" required>
+        </div>
+
+        <div class="form-group">
+          <select [(ngModel)]="regModel.years" class="custom-select" name="year">
+            <option value="">What year are you? </option>
+            <option *ngFor="let year of years">{{year}} </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="InputPhone" class="bmd-label-floating">Phone Number (Ex. 123-123-123)</label>
+          <input #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" [(ngModel)]="regModel.phone"
+            type="phone" name="phone" class="form-control" id="InputPhone" pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="biography" class="bmd-label-floating">Biography</label>
+          <textarea [(ngModel)]="regModel.bio" class="form-control" name="bio" id="biography" rows="5"
+            required></textarea>
+        </div>
+        <script type="text/javascript">
+          $(document).ready(function () {
+            $('#multiple-checkboxes').multiselect({
+              filterPlaceholder: 'Search',
+              enableCaseInsensitiveFiltering: true,
+              includeSelectAllOption: true,
+            });
+          });
+        </script>
+
+        
+
+
+
+
+
+
+        <!-- <div class="form-group">
+          <label for="InputPhoto" class="bmd-label-floating">Profile photo</label>
+          <input type="file" class="form-control-file" name="photo" id="InputPhoto" accept="image/*" required>
+
+        </div> -->
+
+
+        <div class="radio" id='tutoringprofile'>
+          
+
+          <p>Would you like to sign up to become a tutor?</p>
+
+          <label> <input type="radio" id="yes" name="tutor" value="1" onclick="show2();" required>Yes<br></label>
+          <label><input type="radio" id="no" name="tutor" value="0" onclick="show1();" required> No<br></label>
+        </div>
+
+        <div id="tutor_profile" style="display:none;" class="form-group">
+
+
           <div class="form-group">
             <label for="biography" class="bmd-label-floating">Biography</label>
-            <textarea [(ngModel)]="regModel.bio" class="form-control" name="bio" id="biography" rows="5"
-              required></textarea>
+            <textarea class="form-control" name="tutorbio" id="biography" rows="5" required></textarea>
           </div>
-          <script type="text/javascript">
-            $(document).ready(function () {
-              $('#multiple-checkboxes').multiselect({
-                filterPlaceholder: 'Search',
-                enableCaseInsensitiveFiltering: true,
-                includeSelectAllOption: true,
-              });
-            });
-          </script>
-  
+
+
           <div class='form-group'>
-  
             <script
               src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
             <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-  
-  
-            <strong>Select classes you would like to get tutored on:</strong>
-            <select for='classes' id="multiple-checkboxes" multiple="multiple" name="classes[]" class="form-control">
+
+
+
+            <strong>Select classes you would like to tutor for (Press command/ctrl when you want to
+              multi-select):</strong>
+            <select id="multiple-checkboxes" name="tutorclass[]" multiple="multiple" class="form-control">
+
               <optgroup label='Computer Science'>
                 <option id="cs1110">CS 1110</option>
                 <option id="cs2110">CS 2110</option>
@@ -121,101 +148,27 @@
                 <option id="comm3720">COMM 3720</option>
               </optgroup>
             </select>
-  
-  
-  
-  
+
+
           </div>
-  
-  
-  
-          <div class="form-group">
-            <label for="InputPhoto" class="bmd-label-floating">Profile photo</label>
-            <input type="file" class="form-control-file" name="photo" id="InputPhoto" accept="image/*" required>
-  
-          </div>
-          <script>
-            show1 = () => {
-              document.getElementById('tutor_profile').style.display = 'none';
-            }
-            show2 = function () {
-              document.getElementById('tutor_profile').style.display = 'block';
-            }
-  
-                      // These are my arrow and anonymous functions that are used to hide and display content 
-          </script>
-  
-          <div class="radio" id='tutoringprofile'>
-  
-            <p>Would you like to sign up to become a tutor?</p>
-  
-            <label> <input type="radio" id="yes" name="tutor" value="1" onclick="show2();" required>Yes<br></label>
-            <label><input type="radio" id="no" name="tutor" value="0" onclick="show1();" required> No<br></label>
-          </div>
-  
-          <div id="tutor_profile" style="display:none;" class="form-group">
-  
-  
-            <div class="form-group">
-              <label for="biography" class="bmd-label-floating">Biography</label>
-              <textarea class="form-control" name="tutorbio" id="biography" rows="5" required></textarea>
-            </div>
-  
-  
-            <div class='form-group'>
-              <script
-                src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-              <link rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-  
-  
-  
-              <strong>Select classes you would like to tutor for (Press command/ctrl when you want to
-                multi-select):</strong>
-              <select id="multiple-checkboxes" name="tutorclass[]" multiple="multiple" class="form-control">
-  
-                <optgroup label='Computer Science'>
-                  <option id="cs1110">CS 1110</option>
-                  <option id="cs2110">CS 2110</option>
-                  <option id="cs2150">CS 2150</option>
-                  <option id="cs2120">CS 2120</option>
-                  <option id="cs3330">CS 3330</option>
-                  <option id="cs4102">CS 4102</option>
-                  <option id="cs4414">CS 4414</option>
-                </optgroup>
-                <optgroup label='Applied Mathematics'>
-                  <option id="apma3080">APMA 3080</option>
-                  <option id="apma3100">APMA 3100</option>
-                </optgroup>
-                <optgroup label='Commerce'>
-                  <option id="comm2010">COMM 2010</option>
-                  <option id="comm2020">COMM 2020</option>
-                  <option id="comm3410">COMM 3410</option>
-                  <option id="comm3420">COMM 3420</option>
-                  <option id="comm3720">COMM 3720</option>
-                </optgroup>
-              </select>
-  
-  
-            </div>
-  
-          </div>
-  
-          <div id='submit'>
-            <input class="btn btn-primary btn-sm" href='dashboard.php' type="submit" name="submit" role="button"
-              onsubmit=' return validateForm()'>
-          </div>
-  
-  
-          <!-- <button type="submit" href = 'dashboard.php'class="btn btn-primary btn-raised">Submit</button> -->
-        </fieldset>
-      </form>
-  
-  
-    </div>
-  
-  
-  
-  
-  
-  </body>
+
+        </div>
+
+        <div id='submit'>
+          <input class="btn btn-primary btn-sm" href='dashboard.php' type="submit" name="submit" role="button"
+            onsubmit=' return validateForm()'>
+        </div>
+
+
+        <!-- <button type="submit" href = 'dashboard.php'class="btn btn-primary btn-raised">Submit</button> -->
+      </fieldset>
+    </form>
+
+
+  </div>
+
+
+
+
+
+</body>

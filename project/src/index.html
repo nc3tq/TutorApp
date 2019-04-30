@@ -28,6 +28,25 @@
     $(document).ready(function () {
       $('body').bootstrapMaterialDesign();
     });
+
+    show1 = () => {
+      document.getElementById('tutor_profile').style.display = 'none';
+    }
+    show2 = function () {
+      document.getElementById('tutor_profile').style.display = 'block';
+    }
+
+
+    function validatePassword(input) {
+    if (input.value != document.getElementById('password').value) {
+      input.setCustomValidity('Password Must be Matching.');
+    } else {
+      // input is valid -- reset the error message
+      input.setCustomValidity('');
+    }
+  }
+
+
   </script>
 
 
