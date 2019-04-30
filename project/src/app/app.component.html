@@ -26,7 +26,7 @@
         </legend>
 
         <div class="form-group">
-          <label for="InputName" class="bmd-label-floating">Name (Ex. Jane Doe)</label>
+          <label [ngStyle]="{'color':'gray'}" for="InputName" class="bmd-label-floating">Name (Ex. Jane Doe)</label>
           <input type="name" #name="ngModel" [class.is-invalid]="name.invalid" [(ngModel)]="regModel.name"
             class="form-control" id="InputName" name="name"
             pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$" required>
@@ -45,7 +45,7 @@
 
 
         <div class=" form-group">
-          <label for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
+          <label [ngStyle]="{'color':'gray'}" for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
           <input [(ngModel)]="regModel.email" type="email" name="email" class="form-control" id="InputEmail1"
             pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$" required>
           <span class="bmd-help">This email will be used during login.</span>
@@ -53,7 +53,7 @@
         <div></div>
 
         <div class="form-group">
-          <label for="InputPassword1" class="bmd-label-floating">Password</label>
+          <label [ngStyle]="{'color':'gray'}" for="InputPassword1" class="bmd-label-floating">Password</label>
           <input type="password" name="pwd" class="form-control" id="password"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
           <span class="bmd-help">Must contain at least one number and one uppercase and lowercase letter, and at least 8
@@ -61,26 +61,28 @@
 
         </div>
         <div class="form-group">
-          <label for="InputPassword2" class="bmd-label-floating">Confirm Password</label>
+          <label [ngStyle]="{'color':'gray'}" for="InputPassword2" class="bmd-label-floating">Confirm Password</label>
           <input type="password" class="form-control" id="confirm_password" oninput="validatePassword(this)" required>
         </div>
 
+
+
         <div class="form-group">
-          <select [(ngModel)]="regModel.years" class="custom-select" name="year">
-            <option value="">What year are you? </option>
+          <select [ngClass]="{bordered: true}" [(ngModel)]="regModel.years" class="custom-select" name="year" value='What year are you?'>
+            <option [ngStyle]="{'color':'gray'}" value="What year are you? ">What year are you? </option>
             <option *ngFor="let year of years">{{year}} </option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="InputPhone" class="bmd-label-floating">Phone Number (Ex. 123-123-123)</label>
+          <label [ngStyle]="{'color':'gray'}" for="InputPhone" class="bmd-label-floating">Phone Number (Ex. 123-123-123)</label>
           <input #phone="ngModel" [class.is-invalid]="phone.invalid && phone.touched" [(ngModel)]="regModel.phone"
             type="phone" name="phone" class="form-control" id="InputPhone" pattern="^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$"
             required>
         </div>
 
         <div class="form-group">
-          <label for="biography" class="bmd-label-floating">Biography</label>
+          <label [ngStyle]="{'color':'gray'}" for="biography" class="bmd-label-floating">Biography</label>
           <textarea [(ngModel)]="regModel.bio" class="form-control" name="bio" id="biography" rows="5"
             required></textarea>
         </div>
@@ -123,7 +125,7 @@
 
 
           <div class="form-group">
-            <label for="biography" class="bmd-label-floating">Biography</label>
+            <label [ngStyle]="{'color':'gray'}" for="biography" class="bmd-label-floating">Biography</label>
             <textarea class="form-control" [(ngModel)]="regModel.tutor_bio" name="tutorbio" id="biography" rows="5"
               required></textarea>
           </div>
