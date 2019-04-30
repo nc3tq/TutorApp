@@ -19,7 +19,7 @@
 
 
 
-    <form #regForm="ngForm" action="http://localhost/WebApplications/registrationcode.php" method="post">
+    <form #regForm="ngForm" action="http://localhost/WebApplications/ngphp-post.php" method="post">
       <fieldset>
         <legend runat="server" visible="true" style="width:auto; margin-bottom: 0px; font-weight: bold; color: black;">
           Registration
@@ -27,7 +27,7 @@
 
         <div class="form-group">
           <label for="InputName" class="bmd-label-floating">Name (Ex. Jane Doe)</label>
-          <input type="name" [(ngModel)]="regModel.name" [class.is-invalid]="name.invalid" [(ngModel)]="regModel.name"
+          <input type="name" #name="ngModel" [class.is-invalid]="name.invalid" [(ngModel)]="regModel.name"
             class="form-control" id="InputName" name="name"
             pattern="^([A-Z]+[a-zA-Z]*)(\s|\-)?([A-Z]+[a-zA-Z]*)?(\s|\-)?([A-Z]+[a-zA-Z]*)?$" required>
           <!-- <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is requried</small> -->
@@ -83,7 +83,7 @@
           });
         </script>
 
-        
+
 
 
 
@@ -98,12 +98,14 @@
 
 
         <div class="radio" id='tutoringprofile'>
-          
+
 
           <p>Would you like to sign up to become a tutor?</p>
 
-          <label> <input type="radio" id="yes" name="tutor" value="1" onclick="show2();" required>Yes<br></label>
-          <label><input type="radio" id="no" name="tutor" value="0" onclick="show1();" required> No<br></label>
+          <label> <input type="radio" [(ngModel)]="regModel.tutor" class="form-check-input" id="yes" name="tutor"
+              value="1" onclick="show2();" required>Yes<br></label>
+          <label><input type="radio" [(ngModel)]="regModel.tutor" class="form-check-input" id="no" name="tutor"
+              value="0" onclick="show1();" required> No<br></label>
         </div>
 
         <div id="tutor_profile" style="display:none;" class="form-group">
@@ -111,7 +113,8 @@
 
           <div class="form-group">
             <label for="biography" class="bmd-label-floating">Biography</label>
-            <textarea class="form-control" name="tutorbio" id="biography" rows="5" required></textarea>
+            <textarea class="form-control" [(ngModel)]="regModel.tutor_bio" name="tutorbio" id="biography" rows="5"
+              required></textarea>
           </div>
 
 
@@ -125,7 +128,8 @@
 
             <strong>Select classes you would like to tutor for (Press command/ctrl when you want to
               multi-select):</strong>
-            <select id="multiple-checkboxes" name="tutorclass[]" multiple="multiple" class="form-control">
+            <select id="multiple-checkboxes" [(ngModel)]="regModel.tutor_class" class="custom-select"
+              name="tutorclass[]" multiple="multiple" class="form-control">
 
               <optgroup label='Computer Science'>
                 <option id="cs1110">CS 1110</option>
@@ -156,7 +160,7 @@
 
         <div id='submit'>
           <input class="btn btn-primary btn-sm" href='dashboard.php' type="submit" name="submit" role="button"
-            onsubmit=' return validateForm()'>
+            onsubmit=' return validateForm()' (click)="senddata(regForm.value)">
         </div>
 
 

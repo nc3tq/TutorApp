@@ -14,26 +14,28 @@ export class AppComponent {
 
   // let's create a property to store a response from the back end
   // and try binding it back to the view
-  responsedata = 'response data';
+  responsedata;
 
   years = ['2019', '2020', '2021', '2022', '2023'];
-  regModel = new Reg('', '', '', '', '');
- 
+  regModel = new Reg('', '', '', '', '', '', '', '');
+
   constructor(private http: HttpClient) { }
 
   senddata(data) {
-     console.log(data);
+    console.log(data);
 
-     let params = JSON.stringify(data);
+    let params = JSON.stringify(data);
+    console.log('Params: ' + params);
 
-     //this.http.get('http://localhost/cs4640s19/ngphp-get.php?str='+encodeURIComponent(params))
-     this.http.get('http://localhost/cs4640s19/ngphp-get.php?str='+params)
-     //this.http.post('http://localhost/cs4640s19/ngphp-post.php', data)
-     .subscribe((data) => {
+    //this.http.get('http://localhost/cs4640s19/ngphp-get.php?str='+encodeURIComponent(params))
+    this.http.get('http://localhost/WebApplications/ngphp-get.php?str=' + params)
+    this.http.post('http://localhost/WebApplications/ngphp-post.php', data)
+      .subscribe((data) => {
         console.log('Got data from backend', data);
-        // this.responsedata = data;
-     }, (error) => {
+        this.responsedata = data;
+        console.log('hello');
+      }, (error) => {
         console.log('Error', error);
-     })
+      })
   }
 }

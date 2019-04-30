@@ -1,6 +1,24 @@
 <!-- // Aria Kumar(ak8fk) and Neha Chopra(nc3tq)
  -->
 <?php
+// session_start();
+$hostname = "localhost";
+$database = "project";
+$username = "nc3tq";
+$password = "WebPL4640";
+// $search = $_POST['search'];
+
+
+$conn = new mysqli($hostname, $username, $password, $database);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+} else {
+  $search = $_POST['search'];
+  $query = "SELECT * FROM Tutor WHERE tutor_name or tutor_email or tutor_classes LIKE '%$search%'";
+  $res = $conn->query($query);
+}
+
+
 function validate()
 {
   if (!isset($_COOKIE['email']) && !isset($_SESSION['email'])) {
@@ -8,6 +26,7 @@ function validate()
   }
 }
 validate();
+
 
 
 ?>
@@ -120,7 +139,7 @@ validate();
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
       <form action="dashboard.php" class="form-inline my-2 my-lg-0 pull-right" style="padding-top: 10px;">
         <input class="form-control mr-sm-2" name='search' type="search" placeholder="Search" aria-label="Search">
@@ -128,10 +147,10 @@ validate();
       </form>
 
 
-      <!-- Navigation bar for all the classes enrolled in. Students can select which website to go to:
+      Navigation bar for all the classes enrolled in. Students can select which website to go to:
       either browse for tutors depending on the specific class or see their previous favorited tutors -->
 
-    </div>
+    <!-- </div>  -->
     <ul class="navbar-nav mr-auto my-lg-0 pull-right">
       <li class="nav-item">
         <a class="nav-link" style="align-content:right;" href="profile.php">Profile</a>
@@ -151,7 +170,7 @@ validate();
                                           } else {
                                             echo 'Hello!';
                                           } ?></h1>
-      <p class="lead">Choose from your favorited tutors below or select a class and browse for one! </p>
+      <p class="lead">Browse through our tutors and contact them! </p>
     </div>
   </div>
   <!-- This is a display of all the favorited tutors. It is useful especially if a student wants to get quickly
@@ -177,6 +196,31 @@ validate();
 
     <h3 style="padding-left: 20px;"><b> Tutors </b></h3>
 
+
+    <form method="post" action="dashboard.php" class="form-inline my-2 my-lg-0 pull-right" style="padding-top: 10px;">
+      <input type="text" name="search">
+      <input type="submit" name="submit" value="Search">
+    </form>
+    <?php 
+    while ($row = $res->fetch_assoc()) {
+      echo '<table style="width: 100%;" border="1px" class="bios" class="hoverTable">';
+      echo "<tr>";
+
+      echo "<td>";
+
+      echo '<div id="name">' .  $row["tutor_name"] . '</div><br>';
+      echo '<div> Email Me: ' . $row["tutor_email"] . '</div>';
+      echo "<br>";
+      echo $row["tutor_bio"];
+      echo "<br>";
+      echo $row["tutor_classes"];
+      echo "<br>";
+      //if this is last value in row, end row
+      echo "</tr>";
+
+      echo '</table>';
+    } ?> 
+
     <!-- <form action="dashboard.php" class="my-2 my-lg-0 pull-left" style="padding-left: 10px;">
       <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="tooltip" data-placement="right" type="update" title="Favorite all the tutors you like by clicking on the stars
        and then press this button once completed">Update Tutors</button>
@@ -193,99 +237,6 @@ validate();
 
 <!-- <script src="js/back.js"></script> -->
 
-<?php
-// session_start();
-$hostname = "localhost";
-$database = "project";
-$username = "nc3tq";
-$password = "WebPL4640";
-$conn = new mysqli($hostname, $username, $password, $database);
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-} else {
-  echo "Connected successfully";
-}
-if (isset($_POST['search'])) {
-  echo $_POST['search'];
-  $sql = "SELECT  tutor_name, tutor_email, tutor_classes FROM Tutor WHERE tutor_name LIKE '%" . $tutor_name .  "%' OR tutor_email LIKE '%" . $email . "%' OR tutor_classes LIKE '%" . $tutor_classes . "%'";
-  $result = $conn->query($sql);
-  while ($row = mysql_fetch_array($result)) {
-    $tutor_name  = $row['tutor_name'];
-    $tutor_email = $row['tutor_email'];
-    $tutor_classes = $row['tutor_classes'];
-  }
-  // echo "<ul>\n";
-  // echo "<li>" . "<a  href=\"search.php?id=$tutor_name\">"    .$tutor_email . " " . $tutor_classes .  "</a></li>\n";
-  // echo "</ul>";
-}
-// This gets the name of the tutor and will create mini profiles for each user and will be displayed on the dashboard.
-// Ideally if a user clicks on the star then they will be able to access them in the future
-if (isset($_GET['name'])) {
-  $name = $_GET['name'];
-  $sql = "SELECT * FROM Tutor WHERE tutor_name='$name'";
-  $result = $conn->query($sql);
-  if (mysqli_num_rows($result) > 0) {
-    if ($row = $result->fetch_assoc()) {
-      echo '<table style="width: 100%;" border="1px" class="bios" class="hoverTable">';
-      echo '<tr>';
-      echo '<td>';
-      echo '<img src="images/blank.jpg"><br>';
-      echo '<div id="name">' .  $row["tutor_name"] . '</div><br>';
-      echo '<div>' .  $row["tutor_email"] . '</div><br>';
-      echo $row["tutor_bio"];
-      echo "<br>";
-      echo $row["tutor_classes"];
-      echo "<br>";
-      echo '</td>';
-      echo '</tr>';
-    }
-    echo '</table>';
-  } else {
-    echo "0 results";
-  }
-} else {
-  // echo '<h3><b> Tutors </b></h3>';
-
-  $sql = "SELECT * FROM Tutor";
-  $result = $conn->query($sql);
-  if ($result->num_rows > 0) {
-    // while ($row = $result->fetch_assoc()) {
-    $columns = 3;
-    $i = 0;
-    while ($row = mysqli_fetch_array($result)) {
-      //if this is first value in row, create new row
-      echo '<table style="width: 100%;" border="1px" class="bios" class="hoverTable">';
-      if ($i % $columns == 0) {
-        echo "<tr>";
-      }
-      echo "<td>";
-      
-      echo '<img src="images/blank.jpg"><br>';
-      echo '<div id="name">' .  $row["tutor_name"] . '</div><br>';
-      echo '<div' .  $row["tutor_email"] . '</div><br>';
-      echo $row["tutor_bio"];
-      echo "<br>";
-      echo $row["tutor_classes"];
-      echo "<br>";
-      echo '<a id="like" class="btn btn-outline-success my-2 my-sm-0 btn-shared btn-favorite"><span class="fa fa-star pull-left"></span><span
-      class="favorite-text">Favorite</span><span class="unfavorite-text">UnFavorite</span></a>';
-      echo "<br>";
-      //if this is last value in row, end row
-      if ($i % $columns == 0) {
-        echo "</tr>";
-      }
-      echo '</table>';
-      $i++;
-    }
-  } else {
-    echo "0 results";
-  }
-}
-?>
-
-<script>
-  console.log($('.theClass:checkbox:checked');
-</script>
 
 
 </html>

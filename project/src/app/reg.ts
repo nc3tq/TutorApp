@@ -5,6 +5,9 @@ export class Reg {
        public phone: string,
        public year: string,
        public bio: string,
+       public tutor: string,
+       public tutor_bio: string,
+       public tutor_class: string,
 
     ){}
  }

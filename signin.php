@@ -125,7 +125,7 @@
                 setcookie('name_user', $username, time() + 3600);
                 setcookie('email', $email, time() + 3600);
                 setcookie('pwd', $pwd, time() + 3600);
-                header('Location: dashboard.php');
+                header('Location: search.php');
             } else {
                 // This validates to see if the username was typed in correctly. 
                 echo '<div Either email or password is incorrect </div>';
