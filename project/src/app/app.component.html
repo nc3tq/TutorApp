@@ -34,6 +34,17 @@
 
         </div>
         <div class="form-group">
+          <input [(ngModel)]="regModel.uva" style='width: 13px;
+            height: 13px;' type="checkbox" name="uva" class="form-check-input" id="uva" ng-init="regModel.uva==false">
+
+          <label class="form-check-label">Click me if you are you a UVA student: </label>
+
+          <span *ngIf="regModel.uva== true"> Wahoowa! Use your computing ID</span></div>
+
+
+
+
+        <div class=" form-group">
           <label for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
           <input [(ngModel)]="regModel.email" type="email" name="email" class="form-control" id="InputEmail1"
             pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$" required>

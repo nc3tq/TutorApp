@@ -3,6 +3,7 @@ export class Reg {
        public name: string,
        public email: string,
        public phone: string,
+       public uva: boolean,
        public year: string,
        public bio: string,
        public tutor: string,

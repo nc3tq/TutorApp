@@ -17,7 +17,7 @@ export class AppComponent {
   responsedata;
 
   years = ['2019', '2020', '2021', '2022', '2023'];
-  regModel = new Reg('', '', '', '', '', '', '', '');
+  regModel = new Reg('', '', '', false, '', '', '','','',);
 
   constructor(private http: HttpClient) { }
 
