@@ -67,7 +67,7 @@
                         <br />
                 <input type="submit" class="form-style login pull-center" name="login" value="Log in" />
                 <p><a href="#">Forgot Password?</a></p>
-                <p><a href="registration1.php">Register</a></p>
+                <p><a href="http://localhost:4200/">Register</a></p>
                 <!-- use input type="submit" with the required attribute -->
             </form>
             <div class="form-item">

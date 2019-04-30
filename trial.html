@@ -30,8 +30,8 @@
         crossorigin="anonymous"></script>
     <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
 
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <title>Registration</title>
 </head>
 
@@ -43,109 +43,80 @@
 
 <body>
 
-    <div class="container">
-        <h1>Registration</h1>
-        <form>
-            <div class="form-group">
-                <label for="InputEmail1" class="bmd-label-floating">Email address</label>
-                <input type="email" class="form-control" id="InputEmail1">
-                <span class="bmd-help">This email will be used during login.</span>
-            </div>
-            <div class="form-group">
-                <label for="InputPassword1" class="bmd-label-floating">Password</label>
-                <input type="password" class="form-control" id="InputPassword1">
-            </div>
-            <div class="form-group">
-                <label for="InputPhone" class="bmd-label-floating">Phone Number</label>
-                <input type="phone" class="form-control" id="InputPhone">
-            </div>
-            <div class="form-group">
-                <label for="exampleSelect1" class="bmd-label-floating">Example select</label>
-                <select class="form-control" id="exampleSelect1">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="form-group">
-                    <label for="biography" class="bmd-label-floating">Biography</label>
-                    <textarea class="form-control" id="biography" rows="5"></textarea>
-                </div>
-            <script type="text/javascript">
+    <style>
+        /* General */
 
-                $(document).ready(function () {
-                    $('#multiple-checkboxes').multiselect({
-                        filterPlaceholder: 'Search',
-                        enableCaseInsensitiveFiltering: true,
-                        includeSelectAllOption: true,
-                    });
-                });
+        .fa {
+            margin-right: 1em;
+        }
 
-            </script>
+        a {
+            margin-bottom: .2em;
+        }
 
-            <div class='form-group'>
+        /* Button styling */
+        .btn-shared,
+        .btn-shared:focus {
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            -ms-border-radius: 3px;
+            border-radius: 3px;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            transition: all 0.5s;
+            color: #1892BF;
+            border-color: #1892BF;
+            background: transparent;
+            margin: 0px 3px;
+            padding: 7px 14px;
+            outline: 0;
+            margin-left: 20px;
+        }
 
-                <script
-                    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-                    <link rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+        .btn-shared:hover {
+            background: #1892BF;
+            color: #FFF;
+        }
+
+        .unfavorite-text {
+            display: none;
+        }
 
 
-                <strong>Select classes you would like to get tutored on:</strong>
-                <select id="multiple-checkboxes" multiple="multiple" class="form-control">
-                    <optgroup label='Computer Science'>
-                        <option id="cs1110">CS 1110</option>
-                        <option id="cs2110">CS 2110</option>
-                        <option id="cs2150">CS 2150</option>
-                        <option id="cs2120">CS 2120</option>
-                        <option id="cs3330">CS 3330</option>
-                        <option id="cs4102">CS 4102</option>
-                        <option id="cs4414">CS 4414</option>
-                    </optgroup>
-                    <optgroup label='Applied Mathematics'>
-                        <option id="apma3080">APMA 3080</option>
-                        <option id="apma3100">APMA 3100</option>
-                    </optgroup>
-                    <optgroup label='Commerce'>
-                        <option id="comm2010">COMM 2010</option>
-                        <option id="comm2020">COMM 2020</option>
-                        <option id="comm3410">COMM 3410</option>
-                        <option id="comm3420">COMM 3420</option>
-                        <option id="comm3720">COMM 3720</option>
-                    </optgroup>
-                </select>
+        /* 3. favorite button */
+        .liked .fa-star {
+            -webkit-animation: spin .5s linear;
+            -moz-animation: spin 0.5s linear;
+            animation: spin 0.5s linear;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $('a.btn-favorite').on('click', function () {
+                $(this).toggleClass('liked');
+                $('.favorite-text,.unfavorite-text').toggle();
+            });
+        });
+
+
+    </script>
+
+
+    <div> Hellp</div>
+
+
+    <div>
+        <font class="heart fa fa-heart-o"></font>
+    </div>
 
 
 
-
-            </div>
-
-
-            
-            <div class="form-group">
-                <label for="InputPhoto" class="bmd-label-floating">Profile photo</label>
-                <input type="file" class="form-control-file" id="InputPhoto">
-
-            </div>
-
-            <div class="radio">
-                <p>Would you like to sign up to become a tutor?</p>
-
-                <label> <input type="radio" id="yes" name="fooby[1][]" value="1" onclick="show2();"> Yes<br></label>
-                <label><input type="radio" id="no" name="fooby[1][]" value="1" onclick="show1();"> No<br></label>
-            </div>
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox"> Check me out
-                </label>
-            </div>
-            <button class="btn btn-default">Cancel</button>
-            <button type="submit" class="btn btn-primary btn-raised">Submit</button>
-        </form>
-
+    <a id="like" class="btn btn-lg btn-block btn-shared btn-favorite"><span class="fa fa-star pull-left"></span><span
+            class="favorite-text">Favorite</span><span class="unfavorite-text">UnFavorite</span></a>
     </div>
 
 

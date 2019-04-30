@@ -259,7 +259,7 @@ $conn->close();
 
 
                         <strong>Select classes you would like to tutor for (Press command/ctrl when you want to multi-select):</strong>
-                        <select id="multiple-checkboxes" name="tutorclass[]" multiple="multiple" class="form-control" required>
+                        <select id="multiple-checkboxes" name="tutorclass[]" multiple="multiple" class="form-control" >
 
                             <optgroup label='Computer Science'>
                                 <option id="cs1110">CS 1110</option>

@@ -45,13 +45,60 @@ validate();
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
   <!-- Awesome Fonts -->
-  <link href="style/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
+  <!-- <link href="style/font-awesome.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="//s.w.org/wp-includes/css/dashicons.css?20150710" rel="stylesheet" type="text/css">
 
   <style>
     #name {
       font-weight: bold;
+    }
+
+    /* General */
+
+    .fa {
+      margin-right: 1em;
+    }
+
+    a {
+      margin-bottom: .2em;
+    }
+
+    /* Button styling */
+    .btn-shared,
+    .btn-shared:focus {
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      border-radius: 3px;
+      -webkit-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      -ms-transition: all 0.5s;
+      transition: all 0.5s;
+      color: #1892BF;
+      border-color: #1892BF;
+      background: transparent;
+      margin: 0px 3px;
+      padding: 7px 14px;
+      outline: 0;
+      margin-left: 20px;
+    }
+
+    .btn-shared:hover {
+      background: #FFFF33;
+      color: #FFF;
+    }
+
+    .unfavorite-text {
+      display: none;
+    }
+
+
+    /* 3. favorite button */
+    .liked .fa-star {
+      -webkit-animation: spin .5s linear;
+      -moz-animation: spin 0.5s linear;
+      animation: spin 0.5s linear;
     }
   </style>
 
@@ -109,10 +156,20 @@ validate();
   </div>
   <!-- This is a display of all the favorited tutors. It is useful especially if a student wants to get quickly
       get into contact with one and schedule a meet up without having to search. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
   <script>
     $(document).ready(function() {
       $('[data-toggle="tooltip"]').tooltip();
+    });
+
+
+    $(document).ready(function() {
+
+      $('a.btn-favorite').on('click', function() {
+        $(this).toggleClass('liked');
+        $('.favorite-text,.unfavorite-text').toggle();
+      });
     });
   </script>
 
@@ -120,11 +177,11 @@ validate();
 
     <h3 style="padding-left: 20px;"><b> Tutors </b></h3>
 
-    <form action="dashboard.php" class="my-2 my-lg-0 pull-left" style="padding-left: 10px;">
+    <!-- <form action="dashboard.php" class="my-2 my-lg-0 pull-left" style="padding-left: 10px;">
       <button class="btn btn-outline-success my-2 my-sm-0" data-toggle="tooltip" data-placement="right" type="update" title="Favorite all the tutors you like by clicking on the stars
        and then press this button once completed">Update Tutors</button>
 
-    </form>
+    </form> -->
 
 
 
@@ -134,7 +191,7 @@ validate();
   </div>
 </body>
 
-<script src="js/back.js"></script>
+<!-- <script src="js/back.js"></script> -->
 
 <?php
 // session_start();
@@ -172,7 +229,6 @@ if (isset($_GET['name'])) {
       echo '<table style="width: 100%;" border="1px" class="bios" class="hoverTable">';
       echo '<tr>';
       echo '<td>';
-      echo '<font color="yellow" size="5%"><i class="fas fa-star" onclick="start()"></i></font>';
       echo '<img src="images/blank.jpg"><br>';
       echo '<div id="name">' .  $row["tutor_name"] . '</div><br>';
       echo '<div>' .  $row["tutor_email"] . '</div><br>';
@@ -203,13 +259,16 @@ if (isset($_GET['name'])) {
         echo "<tr>";
       }
       echo "<td>";
-      echo '<font color="orange" size="5%"><i class="far fa-star" onclick="start()"></i></font>';
+      
       echo '<img src="images/blank.jpg"><br>';
       echo '<div id="name">' .  $row["tutor_name"] . '</div><br>';
       echo '<div' .  $row["tutor_email"] . '</div><br>';
       echo $row["tutor_bio"];
       echo "<br>";
       echo $row["tutor_classes"];
+      echo "<br>";
+      echo '<a id="like" class="btn btn-outline-success my-2 my-sm-0 btn-shared btn-favorite"><span class="fa fa-star pull-left"></span><span
+      class="favorite-text">Favorite</span><span class="unfavorite-text">UnFavorite</span></a>';
       echo "<br>";
       //if this is last value in row, end row
       if ($i % $columns == 0) {
@@ -225,8 +284,8 @@ if (isset($_GET['name'])) {
 ?>
 
 <script>
-
-console.log($('.theClass:checkbox:checked');
+  console.log($('.theClass:checkbox:checked');
 </script>
+
 
 </html>
