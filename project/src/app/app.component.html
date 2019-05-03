@@ -1,3 +1,5 @@
+<!--  Neha Chopra (nc3tq) -->
+
 <style>
   fieldset {
     border: 3px solid black;
@@ -14,8 +16,8 @@
   <div class="container">
     <!-- <h1>Registration
           </h1> -->
-    {{ regForm.value | json }}
-    {{ regModel | json }}
+    <!-- {{ regForm.value | json }}
+    {{ regModel | json }} -->
 
 
 
@@ -45,7 +47,7 @@
 
 
         <div class=" form-group">
-          <label [ngStyle]="{'color':'gray'}" for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
+          <label [style.color]="'gray'" for="InputEmail1" class="bmd-label-floating">Email address (Ex. a@virginia.edu)</label>
           <input [(ngModel)]="regModel.email" type="email" name="email" class="form-control" id="InputEmail1"
             pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$" required>
           <span class="bmd-help">This email will be used during login.</span>
@@ -172,7 +174,7 @@
         </div>
 
         <div id='submit'>
-          <input class="btn btn-primary btn-sm" href='dashboard.php' type="submit" name="submit" role="button"
+          <input class="btn btn-primary btn-sm" href='ngphp-post.php' type="submit" name="submit" role="button"
             onsubmit=' return validateForm()' (click)="senddata(regForm.value)">
         </div>
 

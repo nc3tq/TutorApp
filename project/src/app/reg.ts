@@ -1,3 +1,6 @@
+// <!-- Neha Chopra (nc3tq) -->
+
+// This is a construcor of the fields that angular will use
 export class Reg {
     constructor(
        public name: string,

@@ -1,3 +1,6 @@
+<!-- Neha Chopra (nc3tq) -->
+
+
 <?php
 $hostname = "localhost";
 $database = "project";
@@ -13,7 +16,11 @@ if ($conn->connect_error) {
     $query = "SELECT * FROM Tutor WHERE tutor_name LIKE '%" . $search . "%' OR tutor_email LIKE '%" . $search . "%' OR tutor_classes LIKE '%" . $search . "%'";
 
     $res = $conn->query($query);
+    $count=mysqli_num_rows($res);
+
+    
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -92,9 +99,9 @@ if ($conn->connect_error) {
 
         <!-- </div>  -->
         <ul class="navbar-nav ml-auto my-lg-0 pull-right">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link  my-2 my-lg-0 pull-right" style="align-content:right; padding-right:10px;" href="profile.php">Profile</a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link  my-2 my-lg-0 pull-right" style="align-content:right; padding-right:10px;" href="profile.php?logout=1">Log Out</a>
             </li>
@@ -108,7 +115,7 @@ if ($conn->connect_error) {
             <h1 class="display-4">Welcome Back, <?php if (isset($_COOKIE['name_user'])) {
                                                     echo $_COOKIE['name_user'];
                                                 } else {
-                                                    echo 'Hello!';
+                                                    echo header('Location: signin.php');
                                                 } ?></h1>
             <p class="lead">Browse through our tutors and contact them! </p>
         </div>
@@ -134,6 +141,9 @@ if ($conn->connect_error) {
 
     <div>
 
+    <!-- This code implements search it gets the query from the search and sees if that query matches anything in the databse fields.
+If it does then it it makes a table of all the individuals that match that query.  -->
+
         <a href = 'search.php' class= "pull-left" style="padding-left: 20px;"><b> View All Tutors </b></a>
         <br>
         <form method="post" action="search.php" class="form-inline my-2 my-lg-0 pull-left" style="padding-left: 20px; padding-top: 10px;">
@@ -157,7 +167,11 @@ if ($conn->connect_error) {
             echo "</tr>";
 
             echo '</table>';
-        } ?>
+        } if ($count<1){
+            echo '<br>';
+            echo ('<h1>No results. </h1>');
+        }
+            ?>
     </div>
 </body>
 

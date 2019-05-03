@@ -289,7 +289,7 @@ $conn->close();
                 </div>
 
                 <div id='submit'>
-                    <input class="btn btn-primary btn-sm" href='dashboard.php' type="submit" name="submit" role="button" onsubmit=' return validateForm()'>
+                    <input class="btn btn-primary btn-sm" href='search.php' type="submit" name="submit" role="button" onsubmit=' return validateForm()'>
                 </div>
 
 

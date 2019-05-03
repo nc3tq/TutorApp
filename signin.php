@@ -97,8 +97,6 @@
     // sees if the connection has failed or has been successful
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
-    } else {
-        echo "Connected successfully";
     }
 
     // This allows the user to signin to the account. It checks to see if the user is in the database and
